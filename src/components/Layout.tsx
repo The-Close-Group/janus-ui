@@ -3,7 +3,7 @@ import React from 'react';
 import { useAuth } from '@/contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { LogOut, BarChart2, Zap } from 'lucide-react';
+import { LogOut, BarChart2, Zap, Facebook, Instagram } from 'lucide-react';
 
 interface LayoutProps {
   children: React.ReactNode;
