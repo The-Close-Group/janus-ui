@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { useAuth } from '@/contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
@@ -27,7 +26,7 @@ const Layout: React.FC<LayoutProps> = ({ children, showNav = false }) => {
             <div className="flex justify-between h-16 items-center">
               <div className="flex items-center">
                 <Zap className="h-8 w-8 text-brand-purple" />
-                <span className="ml-2 text-xl font-bold text-gray-900">VibeMarketing</span>
+                <span className="ml-2 text-xl font-bold text-gray-900">Janus</span>
               </div>
               {user && (
                 <div className="flex items-center gap-4">
@@ -54,7 +53,7 @@ const Layout: React.FC<LayoutProps> = ({ children, showNav = false }) => {
             <div className="flex justify-between h-20 items-center">
               <div className="flex items-center">
                 <Zap className="h-8 w-8 text-white" />
-                <span className="ml-2 text-xl font-bold text-white">VibeMarketing</span>
+                <span className="ml-2 text-xl font-bold text-white">Janus</span>
               </div>
               <div className="flex items-center space-x-4">
                 <Button asChild variant="ghost" size="sm" className="text-white hover:bg-white/10">
@@ -79,7 +78,7 @@ const Layout: React.FC<LayoutProps> = ({ children, showNav = false }) => {
             <div>
               <div className="flex items-center mb-4">
                 <Zap className="h-6 w-6 text-brand-purple" />
-                <span className="ml-2 text-lg font-bold">VibeMarketing</span>
+                <span className="ml-2 text-lg font-bold">Janus</span>
               </div>
               <p className="text-gray-400 text-sm">
                 AI-powered marketing automation for solopreneurs and small businesses.
@@ -119,7 +118,7 @@ const Layout: React.FC<LayoutProps> = ({ children, showNav = false }) => {
           
           <div className="border-t border-gray-800 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
             <p className="text-sm text-gray-400">
-              © 2025 VibeMarketing. All rights reserved.
+              © 2025 Janus. All rights reserved.
             </p>
             <div className="flex space-x-6 mt-4 md:mt-0">
               <a href="#" className="text-gray-400 hover:text-white transition-colors">
