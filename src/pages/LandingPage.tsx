@@ -7,38 +7,35 @@ import {
   ArrowRight, 
   Zap, 
   Rocket, 
-  BarChart2, 
-  MessageSquare, 
-  Target, 
   Instagram, 
   Facebook,
-  Globe,
+  MessageSquare,
+  Target,
   Check
 } from 'lucide-react';
 import { 
   Card, 
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle 
 } from '@/components/ui/card';
 
 const LandingPage: React.FC = () => {
   return (
-    <Layout>
+    <Layout showNav={false}>
       {/* Hero Section with Gradient Background */}
       <div className="bg-gradient-to-b from-indigo-900 via-brand-indigo to-brand-purple">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-28 text-white">
           <div className="flex flex-col md:flex-row items-center justify-between gap-12">
             <div className="max-w-2xl">
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight animate-fadeIn">
-                <span className="block">Transform Your</span>
-                <span className="text-brand-purple bg-white rounded-lg px-3 py-1 inline-block">Marketing</span>
-                <span className="block mt-2">With AI-Powered Automation</span>
+                <span className="block">AI-Powered</span>
+                <span className="text-brand-purple bg-white rounded-lg px-3 py-1 inline-block">Social Media</span>
+                <span className="block mt-2">Marketing Automation</span>
               </h1>
               <p className="text-xl mb-8 text-white/90 max-w-xl">
-                From zero to hero: Instantly create, optimize, and automate your entire marketing strategy with our AI platform. Perfect for solopreneurs and small teams.
+                From zero to hero: Instantly create, optimize, and automate your Instagram and Facebook marketing strategy with our AI platform. Perfect for solopreneurs and small teams.
               </p>
               <div className="flex flex-wrap gap-4">
                 <Button asChild size="lg" className="bg-white text-brand-purple hover:bg-white/90">
@@ -53,7 +50,7 @@ const LandingPage: React.FC = () => {
               <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-6 shadow-xl transform rotate-1 hover:rotate-0 transition-all duration-300">
                 <img 
                   src="/placeholder.svg" 
-                  alt="AI Marketing Dashboard" 
+                  alt="AI Social Media Dashboard" 
                   className="w-full rounded-lg shadow-lg" 
                 />
                 <div className="absolute -top-4 -right-4 bg-brand-purple text-white px-4 py-2 rounded-full text-sm font-medium shadow-lg">
@@ -80,27 +77,27 @@ const LandingPage: React.FC = () => {
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Three Simple Steps to Marketing Success</h2>
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">Three Simple Steps to Social Media Success</h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Our platform handles everything from content creation to optimization and engagement.
+              Our platform handles everything from content creation to engagement and optimization.
             </p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="bg-gradient-to-br from-gray-50 to-gray-100 p-8 rounded-2xl shadow-md border border-gray-100 transform transition-all duration-300 hover:translate-y-[-8px]">
               <div className="bg-brand-purple/10 p-4 rounded-full w-16 h-16 flex items-center justify-center mb-6">
-                <Globe className="h-8 w-8 text-brand-purple" />
+                <Instagram className="h-8 w-8 text-brand-purple" />
               </div>
-              <h3 className="text-xl font-semibold mb-3">1. Connect Your Website</h3>
-              <p className="text-gray-600">We analyze your website to understand your brand voice, audience, and market position.</p>
+              <h3 className="text-xl font-semibold mb-3">1. Connect Your Social Media</h3>
+              <p className="text-gray-600">Connect your Instagram and Facebook accounts seamlessly.</p>
             </div>
             
             <div className="bg-gradient-to-br from-gray-50 to-gray-100 p-8 rounded-2xl shadow-md border border-gray-100 transform transition-all duration-300 hover:translate-y-[-8px]">
               <div className="bg-brand-indigo/10 p-4 rounded-full w-16 h-16 flex items-center justify-center mb-6">
-                <Instagram className="h-8 w-8 text-brand-indigo" />
+                <Zap className="h-8 w-8 text-brand-indigo" />
               </div>
-              <h3 className="text-xl font-semibold mb-3">2. Connect Social Media</h3>
-              <p className="text-gray-600">Link your social accounts and our AI will start crafting tailored content for your audience.</p>
+              <h3 className="text-xl font-semibold mb-3">2. AI Content Generation</h3>
+              <p className="text-gray-600">Our AI crafts perfectly tailored posts for your brand and audience.</p>
             </div>
             
             <div className="bg-gradient-to-br from-gray-50 to-gray-100 p-8 rounded-2xl shadow-md border border-gray-100 transform transition-all duration-300 hover:translate-y-[-8px]">
@@ -108,7 +105,7 @@ const LandingPage: React.FC = () => {
                 <Rocket className="h-8 w-8 text-brand-blue" />
               </div>
               <h3 className="text-xl font-semibold mb-3">3. Watch It Grow</h3>
-              <p className="text-gray-600">Our AI continuously optimizes your marketing strategy, engaging with followers and improving conversions.</p>
+              <p className="text-gray-600">Automated posting, engagement, and growth strategies kick in automatically.</p>
             </div>
           </div>
         </div>
@@ -118,9 +115,9 @@ const LandingPage: React.FC = () => {
       <section className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Powerful Marketing Features</h2>
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">AI-Powered Social Media Marketing</h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Everything you need to build and maintain a powerful marketing presence, without the hassle.
+              Everything you need to build and maintain a powerful Instagram and Facebook presence, without the hassle.
             </p>
           </div>
           
@@ -129,10 +126,10 @@ const LandingPage: React.FC = () => {
             <Card className="border-none shadow-lg hover:shadow-xl transition-all duration-300">
               <CardHeader>
                 <div className="bg-gradient-to-r from-brand-purple to-brand-indigo p-3 rounded-full w-12 h-12 flex items-center justify-center mb-2">
-                  <Zap className="h-6 w-6 text-white" />
+                  <Instagram className="h-6 w-6 text-white" />
                 </div>
                 <CardTitle>AI Content Generation</CardTitle>
-                <CardDescription>Create engaging posts and ads tailored to your brand voice.</CardDescription>
+                <CardDescription>Create engaging Instagram and Facebook posts tailored to your brand.</CardDescription>
               </CardHeader>
               <CardContent>
                 <ul className="space-y-2">
@@ -142,11 +139,11 @@ const LandingPage: React.FC = () => {
                   </li>
                   <li className="flex items-center">
                     <Check className="h-5 w-5 text-brand-purple mr-2" />
-                    <span>Copywriting for ads and captions</span>
+                    <span>Copywriting for posts and captions</span>
                   </li>
                   <li className="flex items-center">
                     <Check className="h-5 w-5 text-brand-purple mr-2" />
-                    <span>SEO optimization included</span>
+                    <span>Style matched to your brand</span>
                   </li>
                 </ul>
               </CardContent>
@@ -194,89 +191,11 @@ const LandingPage: React.FC = () => {
                   </li>
                   <li className="flex items-center">
                     <Check className="h-5 w-5 text-brand-purple mr-2" />
-                    <span>Message handling</span>
+                    <span>Automated message handling</span>
                   </li>
                   <li className="flex items-center">
                     <Check className="h-5 w-5 text-brand-purple mr-2" />
-                    <span>24/7 customer engagement</span>
-                  </li>
-                </ul>
-              </CardContent>
-            </Card>
-            
-            <Card className="border-none shadow-lg hover:shadow-xl transition-all duration-300">
-              <CardHeader>
-                <div className="bg-gradient-to-r from-brand-purple to-brand-blue p-3 rounded-full w-12 h-12 flex items-center justify-center mb-2">
-                  <BarChart2 className="h-6 w-6 text-white" />
-                </div>
-                <CardTitle>Advanced Analytics</CardTitle>
-                <CardDescription>Track performance with detailed analytics.</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <ul className="space-y-2">
-                  <li className="flex items-center">
-                    <Check className="h-5 w-5 text-brand-purple mr-2" />
-                    <span>Engagement metrics</span>
-                  </li>
-                  <li className="flex items-center">
-                    <Check className="h-5 w-5 text-brand-purple mr-2" />
-                    <span>Conversion tracking</span>
-                  </li>
-                  <li className="flex items-center">
-                    <Check className="h-5 w-5 text-brand-purple mr-2" />
-                    <span>Growth analytics</span>
-                  </li>
-                </ul>
-              </CardContent>
-            </Card>
-            
-            <Card className="border-none shadow-lg hover:shadow-xl transition-all duration-300">
-              <CardHeader>
-                <div className="bg-gradient-to-r from-brand-indigo to-brand-purple p-3 rounded-full w-12 h-12 flex items-center justify-center mb-2">
-                  <Facebook className="h-6 w-6 text-white" />
-                </div>
-                <CardTitle>Multi-Platform Support</CardTitle>
-                <CardDescription>Manage all your social platforms in one place.</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <ul className="space-y-2">
-                  <li className="flex items-center">
-                    <Check className="h-5 w-5 text-brand-purple mr-2" />
-                    <span>Instagram integration</span>
-                  </li>
-                  <li className="flex items-center">
-                    <Check className="h-5 w-5 text-brand-purple mr-2" />
-                    <span>Facebook management</span>
-                  </li>
-                  <li className="flex items-center">
-                    <Check className="h-5 w-5 text-brand-purple mr-2" />
-                    <span>Cross-platform posting</span>
-                  </li>
-                </ul>
-              </CardContent>
-            </Card>
-            
-            <Card className="border-none shadow-lg hover:shadow-xl transition-all duration-300">
-              <CardHeader>
-                <div className="bg-gradient-to-r from-brand-blue to-brand-indigo p-3 rounded-full w-12 h-12 flex items-center justify-center mb-2">
-                  <Rocket className="h-6 w-6 text-white" />
-                </div>
-                <CardTitle>Growth Strategy</CardTitle>
-                <CardDescription>AI-driven marketing strategies tailored for your business.</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <ul className="space-y-2">
-                  <li className="flex items-center">
-                    <Check className="h-5 w-5 text-brand-purple mr-2" />
-                    <span>Competitor analysis</span>
-                  </li>
-                  <li className="flex items-center">
-                    <Check className="h-5 w-5 text-brand-purple mr-2" />
-                    <span>Trend identification</span>
-                  </li>
-                  <li className="flex items-center">
-                    <Check className="h-5 w-5 text-brand-purple mr-2" />
-                    <span>Growth recommendations</span>
+                    <span>24/7 engagement</span>
                   </li>
                 </ul>
               </CardContent>
@@ -291,13 +210,13 @@ const LandingPage: React.FC = () => {
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">Loved by Entrepreneurs</h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              See what solopreneurs, vibe coders, and small businesses say about our platform.
+              See what solopreneurs and small businesses say about our platform.
             </p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="bg-gray-50 p-6 rounded-xl shadow-md">
-              <p className="text-gray-700 mb-4">"This platform literally saved me hours every week. The AI content is spot on with our brand voice, and our engagement has grown by 300%."</p>
+              <p className="text-gray-700 mb-4">"This platform literally saved me hours every week. The AI content is spot on with our brand voice, and our Instagram engagement has grown by 300%."</p>
               <div className="flex items-center">
                 <div className="h-10 w-10 rounded-full bg-gray-300 mr-3"></div>
                 <div>
@@ -308,7 +227,7 @@ const LandingPage: React.FC = () => {
             </div>
             
             <div className="bg-gray-50 p-6 rounded-xl shadow-md">
-              <p className="text-gray-700 mb-4">"As a developer, I had no time for marketing. This AI tool handles it all for me while I focus on coding. I'm getting clients from social now!"</p>
+              <p className="text-gray-700 mb-4">"As a developer, I had no time for marketing. This AI tool handles my Instagram and Facebook marketing while I focus on coding. I'm getting clients from social now!"</p>
               <div className="flex items-center">
                 <div className="h-10 w-10 rounded-full bg-gray-300 mr-3"></div>
                 <div>
@@ -319,7 +238,7 @@ const LandingPage: React.FC = () => {
             </div>
             
             <div className="bg-gray-50 p-6 rounded-xl shadow-md">
-              <p className="text-gray-700 mb-4">"Our small coffee shop was struggling with social media. Now we have a consistent presence and customers mention our posts daily!"</p>
+              <p className="text-gray-700 mb-4">"Our small coffee shop was struggling with social media. Now we have a consistent Instagram and Facebook presence, and customers mention our posts daily!"</p>
               <div className="flex items-center">
                 <div className="h-10 w-10 rounded-full bg-gray-300 mr-3"></div>
                 <div>
@@ -337,9 +256,9 @@ const LandingPage: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row items-center justify-between">
             <div className="mb-8 md:mb-0 md:max-w-2xl">
-              <h2 className="text-3xl font-bold mb-4">Ready to Transform Your Marketing?</h2>
+              <h2 className="text-3xl font-bold mb-4">Ready to Transform Your Social Media?</h2>
               <p className="text-xl opacity-90 mb-6">
-                Join thousands of businesses who've simplified their marketing with our AI-powered platform.
+                Join thousands of businesses who've simplified their Instagram and Facebook marketing with our AI-powered platform.
               </p>
               <ul className="space-y-3 mb-8">
                 <li className="flex items-center">
@@ -368,15 +287,15 @@ const LandingPage: React.FC = () => {
                 <ul className="space-y-4">
                   <li className="flex items-center">
                     <div className="bg-white/20 p-2 rounded-full mr-4">
-                      <Zap className="h-5 w-5" />
+                      <Instagram className="h-5 w-5" />
                     </div>
-                    <span>AI Content Creation</span>
+                    <span>Instagram Content Generation</span>
                   </li>
                   <li className="flex items-center">
                     <div className="bg-white/20 p-2 rounded-full mr-4">
-                      <BarChart2 className="h-5 w-5" />
+                      <Facebook className="h-5 w-5" />
                     </div>
-                    <span>Growth Analytics</span>
+                    <span>Facebook Marketing Automation</span>
                   </li>
                   <li className="flex items-center">
                     <div className="bg-white/20 p-2 rounded-full mr-4">
