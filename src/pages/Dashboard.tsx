@@ -5,7 +5,7 @@ import { useWebsite } from '@/contexts/WebsiteContext';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
-import { LineChart, BarChart, Users, MessageSquare, Like, TrendingUp, Instagram, Facebook } from 'lucide-react';
+import { LineChart, BarChart, Users, MessageSquare, ThumbsUp, TrendingUp, Instagram, Facebook } from 'lucide-react';
 import Layout from '@/components/Layout';
 
 // Mock data for the social analytics
@@ -69,7 +69,7 @@ const Dashboard: React.FC = () => {
             title="Post Engagement"
             value="4.8%"
             change="+2.1%"
-            icon={Like}
+            icon={ThumbsUp}
           />
           <DashboardMetricCard
             title="Total Comments"
