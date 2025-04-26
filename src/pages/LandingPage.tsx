@@ -47,11 +47,50 @@ const LandingPage: React.FC = () => {
             </div>
             <div className="w-full md:w-1/2 relative">
               <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-6 shadow-xl transform rotate-1 hover:rotate-0 transition-all duration-300">
-                <img 
-                  src="/placeholder.svg" 
-                  alt="AI Social Media Dashboard" 
-                  className="w-full rounded-lg shadow-lg" 
-                />
+                <svg viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full rounded-lg shadow-lg">
+                  <rect x="30" y="40" width="340" height="200" rx="24" fill="#fff" fillOpacity="0.9"/>
+                  <rect x="60" y="70" width="280" height="40" rx="10" fill="#7C3AED" fillOpacity="0.15"/>
+                  <rect x="60" y="120" width="180" height="20" rx="6" fill="#6366F1" fillOpacity="0.2"/>
+                  <rect x="60" y="150" width="120" height="20" rx="6" fill="#A78BFA" fillOpacity="0.2"/>
+                  <rect x="60" y="180" width="80" height="20" rx="6" fill="#C4B5FD" fillOpacity="0.2"/>
+                  <circle cx="320" cy="180" r="28" fill="#7C3AED" fillOpacity="0.15"/>
+                  <g>
+                    <circle cx="320" cy="180" r="18" fill="#fff"/>
+                    <path d="M320 170v20M310 180h20" stroke="#7C3AED" strokeWidth="2.5" strokeLinecap="round"/>
+                  </g>
+                  <g>
+                    <rect x="90" y="200" width="40" height="40" rx="12" fill="#fff"/>
+                    <g>
+                      <circle cx="110" cy="220" r="10" fill="#E1306C"/>
+                      <rect x="105" y="215" width="10" height="10" rx="2" fill="#fff"/>
+                    </g>
+                  </g>
+                  <g>
+                    <rect x="140" y="200" width="40" height="40" rx="12" fill="#fff"/>
+                    <g>
+                      <rect x="155" y="215" width="10" height="10" rx="2" fill="#1877F3"/>
+                      <rect x="160" y="220" width="5" height="10" rx="2" fill="#fff"/>
+                    </g>
+                  </g>
+                  <g>
+                    <rect x="190" y="200" width="40" height="40" rx="12" fill="#fff"/>
+                    <g>
+                      <circle cx="210" cy="220" r="10" fill="#6366F1"/>
+                      <path d="M210 215v10M205 220h10" stroke="#fff" strokeWidth="2" strokeLinecap="round"/>
+                    </g>
+                  </g>
+                  <g>
+                    <rect x="240" y="200" width="40" height="40" rx="12" fill="#fff"/>
+                    <g>
+                      <circle cx="260" cy="220" r="10" fill="#10B981"/>
+                      <path d="M255 220l5 5 5-10" stroke="#fff" strokeWidth="2" strokeLinecap="round"/>
+                    </g>
+                  </g>
+                  <g>
+                    <circle cx="200" cy="100" r="16" fill="#A78BFA" fillOpacity="0.3"/>
+                    <path d="M200 90v20M190 100h20" stroke="#7C3AED" strokeWidth="2" strokeLinecap="round"/>
+                  </g>
+                </svg>
                 <div className="absolute -top-4 -right-4 bg-brand-purple text-white px-4 py-2 rounded-full text-sm font-medium shadow-lg">
                   AI-Powered
                 </div>

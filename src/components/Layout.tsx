@@ -56,10 +56,10 @@ const Layout: React.FC<LayoutProps> = ({ children, showNav = false }) => {
                 <span className="ml-2 text-xl font-bold text-white">Janus</span>
               </div>
               <div className="flex items-center space-x-4">
-                <Button asChild variant="ghost" size="sm" className="text-white hover:bg-white/10">
+                <Button asChild variant="ghost" size="sm" className="text-white hover:bg-white/10 rounded-full px-6 py-2 font-semibold shadow-md transition-transform duration-150 hover:scale-105">
                   <a href="/login">Log in</a>
                 </Button>
-                <Button asChild size="sm" className="bg-white text-brand-purple hover:bg-white/90">
+                <Button asChild size="sm" className="bg-gradient-to-r from-brand-purple to-brand-indigo text-white hover:from-brand-indigo hover:to-brand-purple rounded-full px-6 py-2 font-semibold shadow-md transition-transform duration-150 hover:scale-110">
                   <a href="/signup">Sign up</a>
                 </Button>
               </div>
