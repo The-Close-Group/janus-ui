@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { useAuth } from '@/contexts/AuthContext';
 import { useWebsite } from '@/contexts/WebsiteContext';
@@ -130,7 +129,7 @@ const Dashboard: React.FC = () => {
                           <p className="font-medium">Post Caption #{i}</p>
                           <div className="flex gap-3 text-sm text-gray-500">
                             <span className="flex items-center gap-1">
-                              <Like className="h-4 w-4" /> {Math.floor(Math.random() * 500) + 100}
+                              <ThumbsUp className="h-4 w-4" /> {Math.floor(Math.random() * 500) + 100}
                             </span>
                             <span className="flex items-center gap-1">
                               <MessageSquare className="h-4 w-4" /> {Math.floor(Math.random() * 50) + 10}
