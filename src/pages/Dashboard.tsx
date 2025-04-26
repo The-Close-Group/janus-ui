@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
 import { LineChart, BarChart, Users, MessageSquare, ThumbsUp, TrendingUp, Instagram, Facebook } from 'lucide-react';
 import Layout from '@/components/Layout';
+import { useNavigate } from 'react-router-dom';
 
 // Mock data for the social analytics
 const generateMockData = () => {
@@ -46,6 +47,7 @@ const DashboardMetricCard = ({ title, value, change, icon: Icon }: {
 const Dashboard: React.FC = () => {
   const { user } = useAuth();
   const { website } = useWebsite();
+  const navigate = useNavigate();
   
   return (
     <Layout showNav>
@@ -207,6 +209,18 @@ const Dashboard: React.FC = () => {
             </Card>
           </TabsContent>
         </Tabs>
+        {/* PostActions Section */}
+        <div className="mt-12 flex flex-col items-center">
+          <h2 className="text-xl font-semibold mb-4">Post Actions</h2>
+          <div className="flex gap-4">
+            <Button onClick={() => navigate('/export?platform=instagram')} variant="default">
+              <Instagram className="mr-2" /> Export to Instagram
+            </Button>
+            <Button onClick={() => navigate('/export?platform=facebook')} variant="default">
+              <Facebook className="mr-2" /> Export to Facebook
+            </Button>
+          </div>
+        </div>
       </div>
     </Layout>
   );
