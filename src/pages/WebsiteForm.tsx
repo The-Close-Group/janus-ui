@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useWebsite } from '@/contexts/WebsiteContext';
@@ -69,7 +68,7 @@ const WebsiteForm: React.FC = () => {
             <CardHeader className="space-y-1">
               <div className="flex justify-center mb-4">
                 <div className="bg-brand-purple/10 p-4 rounded-full">
-                  <Globe className="h-8 w-8 text-brand-purple" />
+                  <Globe className="h-8 w-8 bg-gradient-to-br from-brand-indigo to-brand-purple bg-clip-text text-transparent" />
                 </div>
               </div>
               <CardTitle className="text-2xl font-bold text-center">Add your website</CardTitle>

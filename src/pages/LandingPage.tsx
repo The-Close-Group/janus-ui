@@ -109,7 +109,7 @@ const LandingPage: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-5xl mx-auto">
             <div className="bg-gradient-to-br from-brand-purple/10 to-brand-indigo/10 p-12 rounded-2xl shadow-xl border border-gray-100 flex flex-col items-center">
               <div className="bg-brand-purple/10 p-6 rounded-full w-24 h-24 flex items-center justify-center mb-6">
-                <Instagram className="h-12 w-12 text-brand-purple" />
+                <Instagram className="h-12 w-12 bg-gradient-to-br from-brand-indigo to-brand-purple bg-clip-text text-transparent" />
               </div>
               <h3 className="text-2xl font-semibold mb-4">Connect your channel</h3>
               <p className="text-lg text-gray-600 text-center">Easily connect all your marketing channels in one place.</p>
@@ -133,7 +133,7 @@ const LandingPage: React.FC = () => {
             {/* Card 1 */}
             <div className="flex-1 bg-white rounded-2xl shadow-2xl p-14 flex flex-col items-center text-center local-mcm-card">
               <div className="bg-brand-purple/10 p-6 rounded-full mb-6">
-                <Instagram className="h-12 w-12 text-brand-purple" />
+                <Instagram className="h-12 w-12 bg-gradient-to-br from-brand-indigo to-brand-purple bg-clip-text text-transparent" />
               </div>
               <h3 className="text-2xl font-bold mb-4">Unifying Content Management</h3>
               <p className="text-lg text-gray-600">Centralize all your social posts in one hub.</p>
@@ -248,7 +248,7 @@ const LandingPage: React.FC = () => {
                 <h3 className="text-2xl font-bold mb-6 text-brand-purple">What You'll Get</h3>
                 <ul className="space-y-6 w-full">
                   <li className="flex items-center justify-center gap-4">
-                    <Zap className="h-10 w-10 text-brand-indigo bg-brand-indigo/10 rounded-full p-2" />
+                    <Zap className="h-10 w-10 text-brand-indigo bg-gradient-to-br from-brand-indigo to-brand-purple bg-clip-text text-transparent" />
                     <span className="text-xl font-medium text-gray-900">Automated Campaign Optimization</span>
                   </li>
                   <li className="flex items-center justify-center gap-4">
@@ -256,7 +256,7 @@ const LandingPage: React.FC = () => {
                     <span className="text-xl font-medium text-gray-900">Advanced Audience Targeting</span>
                   </li>
                   <li className="flex items-center justify-center gap-4">
-                    <Rocket className="h-10 w-10 text-brand-purple bg-brand-purple/10 rounded-full p-2" />
+                    <Rocket className="h-10 w-10 bg-gradient-to-br from-brand-indigo to-brand-purple bg-clip-text text-transparent bg-brand-purple/10 rounded-full p-2" />
                     <span className="text-xl font-medium text-gray-900">Scalable Results</span>
                   </li>
                 </ul>

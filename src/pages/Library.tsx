@@ -133,7 +133,7 @@ const Library: React.FC = () => {
                   {post.image ? (
                     <img src={post.image} alt={post.caption} className="object-contain h-32 w-32" />
                   ) : (
-                    <Instagram className="h-16 w-16 text-gray-300 group-hover:opacity-30 transition-opacity duration-200" />
+                    <Instagram className="h-6 w-6 bg-gradient-to-br from-brand-indigo to-brand-purple bg-clip-text text-transparent" />
                   )}
                   <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-black/30">
                     <span className="text-white text-2xl font-bold">&#x1F50D;</span>
@@ -166,7 +166,7 @@ const Library: React.FC = () => {
                   </div>
                   <div className="text-sm text-gray-400 mb-2">Platforms Posted:</div>
                   <div className="flex gap-3 mb-2">
-                    <Instagram className="h-6 w-6 text-brand-purple" />
+                    <Instagram className="h-6 w-6 bg-gradient-to-br from-brand-indigo to-brand-purple bg-clip-text text-transparent" />
                     {/* Facebook icon as SVG for demo */}
                     <svg className="h-6 w-6 text-blue-600" fill="currentColor" viewBox="0 0 24 24"><path d="M22.675 0h-21.35c-.733 0-1.325.592-1.325 1.326v21.348c0 .733.592 1.326 1.325 1.326h11.495v-9.294h-3.128v-3.622h3.128v-2.672c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.797.143v3.24l-1.918.001c-1.504 0-1.797.715-1.797 1.763v2.313h3.587l-.467 3.622h-3.12v9.293h6.116c.73 0 1.323-.593 1.323-1.326v-21.349c0-.734-.593-1.326-1.324-1.326z"/></svg>
                   </div>

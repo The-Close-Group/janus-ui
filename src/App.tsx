@@ -12,6 +12,7 @@ import WebsiteForm from "@/pages/WebsiteForm";
 import Dashboard from "@/pages/Dashboard";
 import NotFound from "@/pages/NotFound";
 import Library from "@/pages/Library";
+import CampaignControls from './pages/CampaignControls';
 
 const queryClient = new QueryClient();
 
@@ -71,6 +72,8 @@ const AppRoutes = () => {
           </WebsiteRequiredRoute>
         </ProtectedRoute>
       } />
+      
+      <Route path="/campaign-controls" element={<CampaignControls />} />
       
       <Route path="*" element={<NotFound />} />
     </Routes>

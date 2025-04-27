@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
@@ -44,7 +43,7 @@ const SignupPage: React.FC = () => {
         <div className="w-full max-w-md">
           <div className="text-center mb-8">
             <Link to="/" className="inline-flex items-center justify-center">
-              <BarChart2 className="h-10 w-10 text-brand-purple" />
+              <BarChart2 className="h-10 w-10 bg-gradient-to-br from-brand-indigo to-brand-purple bg-clip-text text-transparent" />
               <span className="ml-2 text-2xl font-bold">LinkAnalytics</span>
             </Link>
           </div>

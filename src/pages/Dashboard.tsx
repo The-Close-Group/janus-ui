@@ -119,10 +119,18 @@ const Dashboard: React.FC = () => {
           <div className="w-full h-[420px] rounded-3xl border-2 border-gray-200 shadow-lg bg-white flex flex-col md:flex-row">
             {/* Left: Simulator & Management */}
             <div className="flex-1 flex flex-col justify-between p-6 bg-white rounded-t-3xl md:rounded-l-3xl md:rounded-tr-none border-b-2 md:border-b-0 md:border-r-2 border-gray-200 h-full">
-              <button className="w-full bg-brand-purple text-white py-3 px-4 rounded-2xl font-bold text-lg shadow-md hover:bg-brand-purple/90 transition mb-6">Simulate Campaign</button>
-              <div className="bg-brand-purple/10 rounded-2xl shadow p-4 mb-4 border border-brand-purple/20">
-                <div className="font-semibold text-brand-purple mb-2 text-base">Campaign Controls</div>
-                <div className="text-gray-700 text-sm">(Budget, Duration, Targeting, etc. controls will appear here)</div>
+              <button className="w-full bg-gradient-to-br from-brand-indigo to-brand-purple text-white py-3 px-4 rounded-2xl font-bold text-lg shadow-md hover:from-brand-indigo/90 hover:to-brand-purple/90 transition mb-6">Simulate Campaign</button>
+              <div className="bg-brand-purple/10 rounded-2xl shadow p-4 mb-4 border border-brand-purple/20 flex items-center justify-between">
+                <div>
+                  <div className="font-semibold text-brand-purple mb-2 text-base">Campaign Controls</div>
+                  <div className="text-gray-700 text-sm">(Budget, Duration, Targeting, etc. controls will appear here)</div>
+                </div>
+                <button
+                  className="ml-4 px-4 py-2 bg-gradient-to-br from-brand-indigo to-brand-purple text-white rounded-xl font-semibold shadow hover:from-brand-indigo/90 hover:to-brand-purple/90 transition"
+                  onClick={() => navigate('/campaign-controls')}
+                >
+                  Expand
+                </button>
               </div>
               <div className="bg-brand-purple/10 rounded-2xl shadow p-4 border border-brand-purple/20 flex-1 flex flex-col justify-between">
                 <div>
@@ -133,7 +141,7 @@ const Dashboard: React.FC = () => {
             </div>
             {/* Right: Chat Section */}
             <div className="flex-1 flex flex-col min-w-0 bg-white rounded-b-3xl md:rounded-b-none md:rounded-r-3xl h-full">
-              <div className="bg-brand-purple text-white px-6 py-3 font-semibold rounded-t-3xl md:rounded-tr-3xl md:rounded-tl-none text-lg border-b-2 border-brand-purple/20">Campaign Manager</div>
+              <div className="bg-gradient-to-br from-brand-indigo to-brand-purple text-white px-6 py-3 font-semibold rounded-t-3xl md:rounded-tr-3xl md:rounded-tl-none text-lg border-b-2 border-brand-purple/20">Campaign Manager</div>
               <div ref={chatScrollRef} className="flex-1 p-6 space-y-3 overflow-y-auto bg-white">
                 {chatHistory.map((msg, i) => (
                   <div key={i} className={`flex ${msg.sender === 'user' ? 'justify-end' : 'justify-start'}`}> 
@@ -150,7 +158,7 @@ const Dashboard: React.FC = () => {
                   onKeyDown={e => { if (e.key === 'Enter') handleSend(); }}
                 />
                 <button
-                  className="px-6 py-3 bg-brand-purple text-white font-bold rounded-br-3xl hover:bg-brand-purple/90 transition"
+                  className="px-6 py-3 bg-gradient-to-br from-brand-indigo to-brand-purple text-white font-bold rounded-br-3xl hover:from-brand-indigo/90 hover:to-brand-purple/90 transition"
                   onClick={handleSend}
                 >
                   Send
@@ -161,14 +169,14 @@ const Dashboard: React.FC = () => {
         </div>
         <Tabs defaultValue="overview" className="mb-8">
           <TabsList className="w-full bg-brand-purple/10 rounded-2xl flex mb-4 overflow-x-auto scrollbar-hide p-1">
-            <TabsTrigger value="overview" className="flex-1 min-w-max text-brand-purple data-[state=active]:bg-brand-purple data-[state=active]:text-white rounded-xl px-6 py-2 transition">Overview</TabsTrigger>
-            <TabsTrigger value="instagram" className="flex-1 min-w-max text-brand-purple data-[state=active]:bg-brand-purple data-[state=active]:text-white rounded-xl px-6 py-2 transition">Instagram</TabsTrigger>
-            <TabsTrigger value="facebook" className="flex-1 min-w-max text-brand-purple data-[state=active]:bg-brand-purple data-[state=active]:text-white rounded-xl px-6 py-2 transition">Facebook</TabsTrigger>
-            <TabsTrigger value="linkedin" className="flex-1 min-w-max text-brand-purple data-[state=active]:bg-brand-purple data-[state=active]:text-white rounded-xl px-6 py-2 transition">LinkedIn</TabsTrigger>
-            <TabsTrigger value="youtube" className="flex-1 min-w-max text-brand-purple data-[state=active]:bg-brand-purple data-[state=active]:text-white rounded-xl px-6 py-2 transition">YouTube</TabsTrigger>
-            <TabsTrigger value="googleads" className="flex-1 min-w-max text-brand-purple data-[state=active]:bg-brand-purple data-[state=active]:text-white rounded-xl px-6 py-2 transition">Google Ads</TabsTrigger>
-            <TabsTrigger value="amazonads" className="flex-1 min-w-max text-brand-purple data-[state=active]:bg-brand-purple data-[state=active]:text-white rounded-xl px-6 py-2 transition">Amazon Ads</TabsTrigger>
-            <TabsTrigger value="other" className="flex-1 min-w-max text-brand-purple data-[state=active]:bg-brand-purple data-[state=active]:text-white rounded-xl px-6 py-2 transition">Other</TabsTrigger>
+            <TabsTrigger value="overview" className="flex-1 min-w-max text-brand-purple data-[state=active]:bg-gradient-to-br data-[state=active]:from-brand-indigo data-[state=active]:to-brand-purple data-[state=active]:text-white rounded-xl px-6 py-2 transition">Overview</TabsTrigger>
+            <TabsTrigger value="instagram" className="flex-1 min-w-max text-brand-purple data-[state=active]:bg-gradient-to-br data-[state=active]:from-brand-indigo data-[state=active]:to-brand-purple data-[state=active]:text-white rounded-xl px-6 py-2 transition">Instagram</TabsTrigger>
+            <TabsTrigger value="facebook" className="flex-1 min-w-max text-brand-purple data-[state=active]:bg-gradient-to-br data-[state=active]:from-brand-indigo data-[state=active]:to-brand-purple data-[state=active]:text-white rounded-xl px-6 py-2 transition">Facebook</TabsTrigger>
+            <TabsTrigger value="linkedin" className="flex-1 min-w-max text-brand-purple data-[state=active]:bg-gradient-to-br data-[state=active]:from-brand-indigo data-[state=active]:to-brand-purple data-[state=active]:text-white rounded-xl px-6 py-2 transition">LinkedIn</TabsTrigger>
+            <TabsTrigger value="youtube" className="flex-1 min-w-max text-brand-purple data-[state=active]:bg-gradient-to-br data-[state=active]:from-brand-indigo data-[state=active]:to-brand-purple data-[state=active]:text-white rounded-xl px-6 py-2 transition">YouTube</TabsTrigger>
+            <TabsTrigger value="googleads" className="flex-1 min-w-max text-brand-purple data-[state=active]:bg-gradient-to-br data-[state=active]:from-brand-indigo data-[state=active]:to-brand-purple data-[state=active]:text-white rounded-xl px-6 py-2 transition">Google Ads</TabsTrigger>
+            <TabsTrigger value="amazonads" className="flex-1 min-w-max text-brand-purple data-[state=active]:bg-gradient-to-br data-[state=active]:from-brand-indigo data-[state=active]:to-brand-purple data-[state=active]:text-white rounded-xl px-6 py-2 transition">Amazon Ads</TabsTrigger>
+            <TabsTrigger value="other" className="flex-1 min-w-max text-brand-purple data-[state=active]:bg-gradient-to-br data-[state=active]:from-brand-indigo data-[state=active]:to-brand-purple data-[state=active]:text-white rounded-xl px-6 py-2 transition">Other</TabsTrigger>
           </TabsList>
           <TabsContent value="overview" className="space-y-6">
             <Card className="bg-gray-50 rounded-2xl text-gray-900 border-2 border-gray-200 shadow-md">
@@ -196,8 +204,8 @@ const Dashboard: React.FC = () => {
                 <div className="w-full">
                   <Tabs defaultValue="calendar">
                     <TabsList className="w-full bg-brand-purple/10 rounded-xl flex mb-2">
-                      <TabsTrigger value="calendar" className="flex-1 text-brand-purple data-[state=active]:bg-brand-purple data-[state=active]:text-white rounded-xl">Calendar</TabsTrigger>
-                      <TabsTrigger value="timeline" className="flex-1 text-brand-purple data-[state=active]:bg-brand-purple data-[state=active]:text-white rounded-xl">Timeline</TabsTrigger>
+                      <TabsTrigger value="calendar" className="flex-1 text-brand-purple data-[state=active]:bg-gradient-to-br data-[state=active]:from-brand-indigo data-[state=active]:to-brand-purple data-[state=active]:text-white rounded-xl">Calendar</TabsTrigger>
+                      <TabsTrigger value="timeline" className="flex-1 text-brand-purple data-[state=active]:bg-gradient-to-br data-[state=active]:from-brand-indigo data-[state=active]:to-brand-purple data-[state=active]:text-white rounded-xl">Timeline</TabsTrigger>
                     </TabsList>
                     <TabsContent value="calendar">
                       <WeeklyCalendar />
@@ -281,18 +289,18 @@ const Dashboard: React.FC = () => {
                 <CardContent>
                   <div className="flex flex-col gap-2">
                     <div className="flex items-center gap-4">
-                      <LineChart className="h-8 w-8 text-brand-purple" />
+                      <LineChart className="h-8 w-8 bg-gradient-to-br from-brand-indigo to-brand-purple bg-clip-text text-transparent" />
                       <div>
                         <div className="font-semibold">Impressions</div>
-                        <div className="text-2xl font-bold"><span className="text-gray-400 italic flex items-center gap-2"><Loader className="animate-spin h-4 w-4 text-brand-purple" /> Pending API integration</span></div>
+                        <div className="text-2xl font-bold"><span className="text-gray-400 italic flex items-center gap-2"><Loader className="animate-spin h-4 w-4 bg-gradient-to-br from-brand-indigo to-brand-purple bg-clip-text text-transparent" /> Pending API integration</span></div>
                         <div className="text-xs text-gray-400">Total times your posts/stories were seen</div>
                       </div>
                     </div>
                     <div className="flex items-center gap-4 mt-2">
-                      <Users className="h-8 w-8 text-brand-purple" />
+                      <Users className="h-6 w-6 bg-gradient-to-br from-brand-indigo to-brand-purple bg-clip-text text-transparent" />
                       <div>
                         <div className="font-semibold">Reach</div>
-                        <div className="text-2xl font-bold"><span className="text-gray-400 italic flex items-center gap-2"><Loader className="animate-spin h-4 w-4 text-brand-purple" /> Pending API integration</span></div>
+                        <div className="text-2xl font-bold"><span className="text-gray-400 italic flex items-center gap-2"><Loader className="animate-spin h-4 w-4 bg-gradient-to-br from-brand-indigo to-brand-purple bg-clip-text text-transparent" /> Pending API integration</span></div>
                         <div className="text-xs text-gray-400">Unique accounts that saw your content</div>
                       </div>
                     </div>
@@ -308,12 +316,12 @@ const Dashboard: React.FC = () => {
                 <CardContent>
                   <div className="grid grid-cols-2 gap-4 mb-2">
                     <div className="flex flex-col items-center">
-                      <ThumbsUp className="h-6 w-6 text-brand-purple" />
+                      <ThumbsUp className="h-6 w-6 bg-gradient-to-br from-brand-indigo to-brand-purple bg-clip-text text-transparent" />
                       <div className="font-bold text-lg">317</div>
                       <div className="text-xs text-gray-500">Likes</div>
                     </div>
                     <div className="flex flex-col items-center">
-                      <MessageSquare className="h-6 w-6 text-brand-purple" />
+                      <MessageSquare className="h-6 w-6 bg-gradient-to-br from-brand-indigo to-brand-purple bg-clip-text text-transparent" />
                       <div className="font-bold text-lg">44</div>
                       <div className="text-xs text-gray-500">Comments</div>
                     </div>
@@ -329,7 +337,7 @@ const Dashboard: React.FC = () => {
                     </div>
                   </div>
                   <div className="flex flex-col items-center mt-2">
-                    <TrendingUp className="h-6 w-6 text-brand-purple" />
+                    <TrendingUp className="h-6 w-6 bg-gradient-to-br from-brand-indigo to-brand-purple bg-clip-text text-transparent" />
                     <div className="font-bold text-lg">4.8%</div>
                     <div className="text-xs text-gray-500">Engagement Rate</div>
                   </div>
@@ -374,7 +382,7 @@ const Dashboard: React.FC = () => {
                 <CardContent>
                   <div className="flex flex-col gap-2">
                     <div className="flex items-center gap-4">
-                      <Users className="h-6 w-6 text-brand-purple" />
+                      <Users className="h-6 w-6 bg-gradient-to-br from-brand-indigo to-brand-purple bg-clip-text text-transparent" />
                       <div className="font-semibold">Profile Visits: <span className="font-bold">1,200</span></div>
                     </div>
                     <div className="flex items-center gap-4">
@@ -443,22 +451,22 @@ const Dashboard: React.FC = () => {
                 <CardContent>
                   <div className="flex flex-col gap-2">
                     <div className="flex items-center gap-4">
-                      <LineChart className="h-8 w-8 text-brand-purple" />
+                      <LineChart className="h-8 w-8 bg-gradient-to-br from-brand-indigo to-brand-purple bg-clip-text text-transparent" />
                       <div>
                         <div className="font-semibold">Total Impressions</div>
-                        <div className="text-2xl font-bold"><span className="text-gray-400 italic flex items-center gap-2"><Loader className="animate-spin h-4 w-4 text-brand-purple" /> Pending API integration</span></div>
+                        <div className="text-2xl font-bold"><span className="text-gray-400 italic flex items-center gap-2"><Loader className="animate-spin h-4 w-4 bg-gradient-to-br from-brand-indigo to-brand-purple bg-clip-text text-transparent" /> Pending API integration</span></div>
                         <div className="text-xs text-gray-400">Total times your posts were seen</div>
                       </div>
                     </div>
                     <div className="flex items-center gap-4 mt-2">
-                      <Users className="h-8 w-8 text-brand-purple" />
+                      <Users className="h-8 w-8 bg-gradient-to-br from-brand-indigo to-brand-purple bg-clip-text text-transparent" />
                       <div>
                         <div className="font-semibold">Organic Reach</div>
-                        <div className="text-lg font-bold"><span className="text-gray-400 italic flex items-center gap-2"><Loader className="animate-spin h-4 w-4 text-brand-purple" /> Pending API integration</span></div>
+                        <div className="text-lg font-bold"><span className="text-gray-400 italic flex items-center gap-2"><Loader className="animate-spin h-4 w-4 bg-gradient-to-br from-brand-indigo to-brand-purple bg-clip-text text-transparent" /> Pending API integration</span></div>
                       </div>
                       <div>
                         <div className="font-semibold">Paid Reach</div>
-                        <div className="text-lg font-bold"><span className="text-gray-400 italic flex items-center gap-2"><Loader className="animate-spin h-4 w-4 text-brand-purple" /> Pending API integration</span></div>
+                        <div className="text-lg font-bold"><span className="text-gray-400 italic flex items-center gap-2"><Loader className="animate-spin h-4 w-4 bg-gradient-to-br from-brand-indigo to-brand-purple bg-clip-text text-transparent" /> Pending API integration</span></div>
                       </div>
                     </div>
                   </div>
@@ -473,12 +481,12 @@ const Dashboard: React.FC = () => {
                 <CardContent>
                   <div className="grid grid-cols-2 gap-4 mb-2">
                     <div className="flex flex-col items-center">
-                      <ThumbsUp className="h-6 w-6 text-brand-purple" />
+                      <ThumbsUp className="h-6 w-6 bg-gradient-to-br from-brand-indigo to-brand-purple bg-clip-text text-transparent" />
                       <div className="font-bold text-lg">210</div>
                       <div className="text-xs text-gray-500">Reactions</div>
                     </div>
                     <div className="flex flex-col items-center">
-                      <MessageSquare className="h-6 w-6 text-brand-purple" />
+                      <MessageSquare className="h-6 w-6 bg-gradient-to-br from-brand-indigo to-brand-purple bg-clip-text text-transparent" />
                       <div className="font-bold text-lg">38</div>
                       <div className="text-xs text-gray-500">Comments</div>
                     </div>
@@ -494,7 +502,7 @@ const Dashboard: React.FC = () => {
                     </div>
                   </div>
                   <div className="flex flex-col items-center mt-2">
-                    <TrendingUp className="h-6 w-6 text-brand-purple" />
+                    <TrendingUp className="h-6 w-6 bg-gradient-to-br from-brand-indigo to-brand-purple bg-clip-text text-transparent" />
                     <div className="font-bold text-lg">3.7%</div>
                     <div className="text-xs text-gray-500">Engagement Rate</div>
                   </div>
@@ -517,7 +525,7 @@ const Dashboard: React.FC = () => {
                       <div className="font-semibold">Call/Direction Taps: <span className="font-bold">27</span></div>
                     </div>
                     <div className="flex items-center gap-4">
-                      <Users className="h-6 w-6 text-brand-purple" />
+                      <Users className="h-6 w-6 bg-gradient-to-br from-brand-indigo to-brand-purple bg-clip-text text-transparent" />
                       <div className="font-semibold">Page Views: <span className="font-bold">2,340</span></div>
                     </div>
                     <div className="flex items-center gap-4">
@@ -546,7 +554,7 @@ const Dashboard: React.FC = () => {
                       <div className="font-semibold">Avg Watch Time: <span className="font-bold">00:18</span></div>
                     </div>
                     <div className="flex items-center gap-4">
-                      <TrendingUp className="h-6 w-6 text-brand-purple" />
+                      <TrendingUp className="h-6 w-6 bg-gradient-to-br from-brand-indigo to-brand-purple bg-clip-text text-transparent" />
                       <div className="font-semibold">Audience Retention: <span className="font-bold">62%</span></div>
                     </div>
                   </div>
@@ -605,14 +613,14 @@ const Dashboard: React.FC = () => {
                 <CardContent>
                   <div className="flex flex-col gap-2">
                     <div className="flex items-center gap-4">
-                      <Users className="h-8 w-8 text-brand-purple" />
+                      <Users className="h-8 w-8 bg-gradient-to-br from-brand-indigo to-brand-purple bg-clip-text text-transparent" />
                       <div>
                         <div className="font-semibold">Page Views</div>
-                        <div className="text-2xl font-bold"><span className="text-gray-400 italic flex items-center gap-2"><Loader className="animate-spin h-4 w-4 text-brand-purple" /> Pending API integration</span></div>
+                        <div className="text-2xl font-bold"><span className="text-gray-400 italic flex items-center gap-2"><Loader className="animate-spin h-4 w-4 bg-gradient-to-br from-brand-indigo to-brand-purple bg-clip-text text-transparent" /> Pending API integration</span></div>
                       </div>
                       <div>
                         <div className="font-semibold">Unique Visitors</div>
-                        <div className="text-2xl font-bold"><span className="text-gray-400 italic flex items-center gap-2"><Loader className="animate-spin h-4 w-4 text-brand-purple" /> Pending API integration</span></div>
+                        <div className="text-2xl font-bold"><span className="text-gray-400 italic flex items-center gap-2"><Loader className="animate-spin h-4 w-4 bg-gradient-to-br from-brand-indigo to-brand-purple bg-clip-text text-transparent" /> Pending API integration</span></div>
                       </div>
                     </div>
                   </div>
@@ -627,7 +635,7 @@ const Dashboard: React.FC = () => {
                 <CardContent>
                   <div className="grid grid-cols-2 gap-4 mb-2">
                     <div className="flex flex-col items-center">
-                      <LineChart className="h-6 w-6 text-brand-purple" />
+                      <LineChart className="h-6 w-6 bg-gradient-to-br from-brand-indigo to-brand-purple bg-clip-text text-transparent" />
                       <div className="font-bold text-lg">8,900</div>
                       <div className="text-xs text-gray-500">Impressions</div>
                     </div>
@@ -637,12 +645,12 @@ const Dashboard: React.FC = () => {
                       <div className="text-xs text-gray-500">Clicks</div>
                     </div>
                     <div className="flex flex-col items-center">
-                      <ThumbsUp className="h-6 w-6 text-brand-purple" />
+                      <ThumbsUp className="h-6 w-6 bg-gradient-to-br from-brand-indigo to-brand-purple bg-clip-text text-transparent" />
                       <div className="font-bold text-lg">320</div>
                       <div className="text-xs text-gray-500">Reactions</div>
                     </div>
                     <div className="flex flex-col items-center">
-                      <MessageSquare className="h-6 w-6 text-brand-purple" />
+                      <MessageSquare className="h-6 w-6 bg-gradient-to-br from-brand-indigo to-brand-purple bg-clip-text text-transparent" />
                       <div className="font-bold text-lg">44</div>
                       <div className="text-xs text-gray-500">Comments</div>
                     </div>
@@ -653,7 +661,7 @@ const Dashboard: React.FC = () => {
                     </div>
                   </div>
                   <div className="flex flex-col items-center mt-2">
-                    <TrendingUp className="h-6 w-6 text-brand-purple" />
+                    <TrendingUp className="h-6 w-6 bg-gradient-to-br from-brand-indigo to-brand-purple bg-clip-text text-transparent" />
                     <div className="font-bold text-lg">5.2%</div>
                     <div className="text-xs text-gray-500">Engagement Rate</div>
                   </div>
@@ -668,7 +676,7 @@ const Dashboard: React.FC = () => {
                 <CardContent>
                   <div className="flex flex-col gap-2">
                     <div className="flex items-center gap-4">
-                      <Users className="h-8 w-8 text-brand-purple" />
+                      <Users className="h-8 w-8 bg-gradient-to-br from-brand-indigo to-brand-purple bg-clip-text text-transparent" />
                       <div className="font-semibold">Total Followers: <span className="font-bold">3,800</span></div>
                       <div className="font-semibold">Net Growth: <span className="font-bold">+120</span></div>
                     </div>
@@ -785,39 +793,39 @@ const Dashboard: React.FC = () => {
                 <CardContent>
                   <div className="flex flex-col gap-2">
                     <div className="flex items-center gap-4">
-                      <LineChart className="h-8 w-8 text-brand-purple" />
+                      <LineChart className="h-8 w-8 bg-gradient-to-br from-brand-indigo to-brand-purple bg-clip-text text-transparent" />
                       <div>
                         <div className="font-semibold">Views</div>
-                        <div className="text-2xl font-bold"><span className="text-gray-400 italic flex items-center gap-2"><Loader className="animate-spin h-4 w-4 text-brand-purple" /> Pending API integration</span></div>
+                        <div className="text-2xl font-bold"><span className="text-gray-400 italic flex items-center gap-2"><Loader className="animate-spin h-4 w-4 bg-gradient-to-br from-brand-indigo to-brand-purple bg-clip-text text-transparent" /> Pending API integration</span></div>
                         <div className="text-xs text-gray-400">Total video views</div>
                       </div>
                     </div>
                     <div className="flex items-center gap-4 mt-2">
-                      <BarChart className="h-8 w-8 text-brand-purple" />
+                      <BarChart className="h-8 w-8 bg-gradient-to-br from-brand-indigo to-brand-purple bg-clip-text text-transparent" />
                       <div>
                         <div className="font-semibold">Watch Time (hrs)</div>
-                        <div className="text-2xl font-bold"><span className="text-gray-400 italic flex items-center gap-2"><Loader className="animate-spin h-4 w-4 text-brand-purple" /> Pending API integration</span></div>
+                        <div className="text-2xl font-bold"><span className="text-gray-400 italic flex items-center gap-2"><Loader className="animate-spin h-4 w-4 bg-gradient-to-br from-brand-indigo to-brand-purple bg-clip-text text-transparent" /> Pending API integration</span></div>
                         <div className="text-xs text-gray-400">Total hours watched</div>
                       </div>
                     </div>
                     <div className="flex items-center gap-4 mt-2">
-                      <TrendingUp className="h-8 w-8 text-brand-purple" />
+                      <TrendingUp className="h-8 w-8 bg-gradient-to-br from-brand-indigo to-brand-purple bg-clip-text text-transparent" />
                       <div>
                         <div className="font-semibold">Avg View Duration</div>
-                        <div className="text-2xl font-bold"><span className="text-gray-400 italic flex items-center gap-2"><Loader className="animate-spin h-4 w-4 text-brand-purple" /> Pending API integration</span></div>
+                        <div className="text-2xl font-bold"><span className="text-gray-400 italic flex items-center gap-2"><Loader className="animate-spin h-4 w-4 bg-gradient-to-br from-brand-indigo to-brand-purple bg-clip-text text-transparent" /> Pending API integration</span></div>
                         <div className="text-xs text-gray-400">Average time watched per view</div>
                       </div>
                     </div>
                     <div className="flex items-center gap-4 mt-2">
-                      <Users className="h-8 w-8 text-brand-purple" />
+                      <Users className="h-8 w-8 bg-gradient-to-br from-brand-indigo to-brand-purple bg-clip-text text-transparent" />
                       <div>
                         <div className="font-semibold">Subscribers Gained</div>
-                        <div className="text-2xl font-bold"><span className="text-gray-400 italic flex items-center gap-2"><Loader className="animate-spin h-4 w-4 text-brand-purple" /> Pending API integration</span></div>
+                        <div className="text-2xl font-bold"><span className="text-gray-400 italic flex items-center gap-2"><Loader className="animate-spin h-4 w-4 bg-gradient-to-br from-brand-indigo to-brand-purple bg-clip-text text-transparent" /> Pending API integration</span></div>
                         <div className="text-xs text-gray-400">Last 28 days</div>
                       </div>
                       <div>
                         <div className="font-semibold">Subscribers Lost</div>
-                        <div className="text-2xl font-bold"><span className="text-gray-400 italic flex items-center gap-2"><Loader className="animate-spin h-4 w-4 text-brand-purple" /> Pending API integration</span></div>
+                        <div className="text-2xl font-bold"><span className="text-gray-400 italic flex items-center gap-2"><Loader className="animate-spin h-4 w-4 bg-gradient-to-br from-brand-indigo to-brand-purple bg-clip-text text-transparent" /> Pending API integration</span></div>
                         <div className="text-xs text-gray-400">Last 28 days</div>
                       </div>
                     </div>
@@ -833,18 +841,18 @@ const Dashboard: React.FC = () => {
                 <CardContent>
                   <div className="flex flex-col gap-2">
                     <div className="flex items-center gap-4">
-                      <LineChart className="h-8 w-8 text-brand-purple" />
+                      <LineChart className="h-8 w-8 bg-gradient-to-br from-brand-indigo to-brand-purple bg-clip-text text-transparent" />
                       <div>
                         <div className="font-semibold">Impressions</div>
-                        <div className="text-2xl font-bold"><span className="text-gray-400 italic flex items-center gap-2"><Loader className="animate-spin h-4 w-4 text-brand-purple" /> Pending API integration</span></div>
+                        <div className="text-2xl font-bold"><span className="text-gray-400 italic flex items-center gap-2"><Loader className="animate-spin h-4 w-4 bg-gradient-to-br from-brand-indigo to-brand-purple bg-clip-text text-transparent" /> Pending API integration</span></div>
                         <div className="text-xs text-gray-400">How many times thumbnails were shown</div>
                       </div>
                     </div>
                     <div className="flex items-center gap-4 mt-2">
-                      <TrendingUp className="h-8 w-8 text-brand-purple" />
+                      <TrendingUp className="h-8 w-8 bg-gradient-to-br from-brand-indigo to-brand-purple bg-clip-text text-transparent" />
                       <div>
                         <div className="font-semibold">Impression CTR</div>
-                        <div className="text-2xl font-bold"><span className="text-gray-400 italic flex items-center gap-2"><Loader className="animate-spin h-4 w-4 text-brand-purple" /> Pending API integration</span></div>
+                        <div className="text-2xl font-bold"><span className="text-gray-400 italic flex items-center gap-2"><Loader className="animate-spin h-4 w-4 bg-gradient-to-br from-brand-indigo to-brand-purple bg-clip-text text-transparent" /> Pending API integration</span></div>
                         <div className="text-xs text-gray-400">Click-through rate from impressions</div>
                       </div>
                     </div>
@@ -870,12 +878,12 @@ const Dashboard: React.FC = () => {
                 <CardContent>
                   <div className="grid grid-cols-2 gap-4 mb-2">
                     <div className="flex flex-col items-center">
-                      <ThumbsUp className="h-6 w-6 text-brand-purple" />
+                      <ThumbsUp className="h-6 w-6 bg-gradient-to-br from-brand-indigo to-brand-purple bg-clip-text text-transparent" />
                       <div className="font-bold text-lg">1,120</div>
                       <div className="text-xs text-gray-500">Likes</div>
                     </div>
                     <div className="flex flex-col items-center">
-                      <MessageSquare className="h-6 w-6 text-brand-purple" />
+                      <MessageSquare className="h-6 w-6 bg-gradient-to-br from-brand-indigo to-brand-purple bg-clip-text text-transparent" />
                       <div className="font-bold text-lg">210</div>
                       <div className="text-xs text-gray-500">Comments</div>
                     </div>
@@ -901,18 +909,18 @@ const Dashboard: React.FC = () => {
                 <CardContent>
                   <div className="flex flex-col gap-2">
                     <div className="flex items-center gap-4">
-                      <TrendingUp className="h-8 w-8 text-brand-purple" />
+                      <TrendingUp className="h-8 w-8 bg-gradient-to-br from-brand-indigo to-brand-purple bg-clip-text text-transparent" />
                       <div>
                         <div className="font-semibold">Absolute Retention</div>
-                        <div className="text-2xl font-bold"><span className="text-gray-400 italic flex items-center gap-2"><Loader className="animate-spin h-4 w-4 text-brand-purple" /> Pending API integration</span></div>
+                        <div className="text-2xl font-bold"><span className="text-gray-400 italic flex items-center gap-2"><Loader className="animate-spin h-4 w-4 bg-gradient-to-br from-brand-indigo to-brand-purple bg-clip-text text-transparent" /> Pending API integration</span></div>
                         <div className="text-xs text-gray-400">Avg % of video watched</div>
                       </div>
                     </div>
                     <div className="flex items-center gap-4 mt-2">
-                      <TrendingUp className="h-8 w-8 text-brand-purple" />
+                      <TrendingUp className="h-8 w-8 bg-gradient-to-br from-brand-indigo to-brand-purple bg-clip-text text-transparent" />
                       <div>
                         <div className="font-semibold">Relative Retention</div>
-                        <div className="text-2xl font-bold"><span className="text-gray-400 italic flex items-center gap-2"><Loader className="animate-spin h-4 w-4 text-brand-purple" /> Pending API integration</span></div>
+                        <div className="text-2xl font-bold"><span className="text-gray-400 italic flex items-center gap-2"><Loader className="animate-spin h-4 w-4 bg-gradient-to-br from-brand-indigo to-brand-purple bg-clip-text text-transparent" /> Pending API integration</span></div>
                         <div className="text-xs text-gray-400">Compared to similar videos</div>
                       </div>
                     </div>
@@ -930,7 +938,7 @@ const Dashboard: React.FC = () => {
                     {/* Unique Viewers */}
                     <div>
                       <div className="font-semibold mb-1">Unique Viewers</div>
-                      <div className="text-2xl font-bold"><span className="text-gray-400 italic flex items-center gap-2"><Loader className="animate-spin h-4 w-4 text-brand-purple" /> Pending API integration</span></div>
+                      <div className="text-2xl font-bold"><span className="text-gray-400 italic flex items-center gap-2"><Loader className="animate-spin h-4 w-4 bg-gradient-to-br from-brand-indigo to-brand-purple bg-clip-text text-transparent" /> Pending API integration</span></div>
                       <div className="text-xs text-gray-400 mt-1">Last 28 days</div>
                     </div>
                     {/* Returning vs New */}
@@ -968,26 +976,26 @@ const Dashboard: React.FC = () => {
                 <CardContent>
                   <div className="flex flex-col gap-2">
                     <div className="flex items-center gap-4">
-                      <BarChart className="h-8 w-8 text-brand-purple" />
+                      <BarChart className="h-8 w-8 bg-gradient-to-br from-brand-indigo to-brand-purple bg-clip-text text-transparent" />
                       <div>
                         <div className="font-semibold">Estimated Revenue</div>
-                        <div className="text-2xl font-bold"><span className="text-gray-400 italic flex items-center gap-2"><Loader className="animate-spin h-4 w-4 text-brand-purple" /> Pending API integration</span></div>
+                        <div className="text-2xl font-bold"><span className="text-gray-400 italic flex items-center gap-2"><Loader className="animate-spin h-4 w-4 bg-gradient-to-br from-brand-indigo to-brand-purple bg-clip-text text-transparent" /> Pending API integration</span></div>
                         <div className="text-xs text-gray-400">Last 28 days</div>
                       </div>
                     </div>
                     <div className="flex items-center gap-4 mt-2">
-                      <TrendingUp className="h-8 w-8 text-brand-purple" />
+                      <TrendingUp className="h-8 w-8 bg-gradient-to-br from-brand-indigo to-brand-purple bg-clip-text text-transparent" />
                       <div>
                         <div className="font-semibold">RPM</div>
-                        <div className="text-2xl font-bold"><span className="text-gray-400 italic flex items-center gap-2"><Loader className="animate-spin h-4 w-4 text-brand-purple" /> Pending API integration</span></div>
+                        <div className="text-2xl font-bold"><span className="text-gray-400 italic flex items-center gap-2"><Loader className="animate-spin h-4 w-4 bg-gradient-to-br from-brand-indigo to-brand-purple bg-clip-text text-transparent" /> Pending API integration</span></div>
                         <div className="text-xs text-gray-400">Revenue per 1,000 views</div>
                       </div>
                     </div>
                     <div className="flex items-center gap-4 mt-2">
-                      <TrendingUp className="h-8 w-8 text-brand-purple" />
+                      <TrendingUp className="h-8 w-8 bg-gradient-to-br from-brand-indigo to-brand-purple bg-clip-text text-transparent" />
                       <div>
                         <div className="font-semibold">Playback-based CPM</div>
-                        <div className="text-2xl font-bold"><span className="text-gray-400 italic flex items-center gap-2"><Loader className="animate-spin h-4 w-4 text-brand-purple" /> Pending API integration</span></div>
+                        <div className="text-2xl font-bold"><span className="text-gray-400 italic flex items-center gap-2"><Loader className="animate-spin h-4 w-4 bg-gradient-to-br from-brand-indigo to-brand-purple bg-clip-text text-transparent" /> Pending API integration</span></div>
                         <div className="text-xs text-gray-400">Cost per 1,000 playbacks</div>
                       </div>
                     </div>
@@ -1007,39 +1015,39 @@ const Dashboard: React.FC = () => {
                 <CardContent>
                   <div className="flex flex-col gap-2">
                     <div className="flex items-center gap-4">
-                      <LineChart className="h-8 w-8 text-brand-purple" />
+                      <LineChart className="h-8 w-8 bg-gradient-to-br from-brand-indigo to-brand-purple bg-clip-text text-transparent" />
                       <div>
                         <div className="font-semibold">Impressions</div>
-                        <div className="text-2xl font-bold"><span className="text-gray-400 italic flex items-center gap-2"><Loader className="animate-spin h-4 w-4 text-brand-purple" /> Pending API integration</span></div>
+                        <div className="text-2xl font-bold"><span className="text-gray-400 italic flex items-center gap-2"><Loader className="animate-spin h-4 w-4 bg-gradient-to-br from-brand-indigo to-brand-purple bg-clip-text text-transparent" /> Pending API integration</span></div>
                         <div className="text-xs text-gray-400">Total ad impressions</div>
                       </div>
                     </div>
                     <div className="flex items-center gap-4 mt-2">
-                      <BarChart className="h-8 w-8 text-brand-purple" />
+                      <BarChart className="h-8 w-8 bg-gradient-to-br from-brand-indigo to-brand-purple bg-clip-text text-transparent" />
                       <div>
                         <div className="font-semibold">Clicks</div>
-                        <div className="text-2xl font-bold"><span className="text-gray-400 italic flex items-center gap-2"><Loader className="animate-spin h-4 w-4 text-brand-purple" /> Pending API integration</span></div>
+                        <div className="text-2xl font-bold"><span className="text-gray-400 italic flex items-center gap-2"><Loader className="animate-spin h-4 w-4 bg-gradient-to-br from-brand-indigo to-brand-purple bg-clip-text text-transparent" /> Pending API integration</span></div>
                         <div className="text-xs text-gray-400">Total ad clicks</div>
                       </div>
                     </div>
                     <div className="flex items-center gap-4 mt-2">
-                      <TrendingUp className="h-8 w-8 text-brand-purple" />
+                      <TrendingUp className="h-8 w-8 bg-gradient-to-br from-brand-indigo to-brand-purple bg-clip-text text-transparent" />
                       <div>
                         <div className="font-semibold">CTR</div>
-                        <div className="text-2xl font-bold"><span className="text-gray-400 italic flex items-center gap-2"><Loader className="animate-spin h-4 w-4 text-brand-purple" /> Pending API integration</span></div>
+                        <div className="text-2xl font-bold"><span className="text-gray-400 italic flex items-center gap-2"><Loader className="animate-spin h-4 w-4 bg-gradient-to-br from-brand-indigo to-brand-purple bg-clip-text text-transparent" /> Pending API integration</span></div>
                         <div className="text-xs text-gray-400">Click-through rate</div>
                       </div>
                     </div>
                     <div className="flex items-center gap-4 mt-2">
-                      <BarChart className="h-8 w-8 text-brand-purple" />
+                      <BarChart className="h-8 w-8 bg-gradient-to-br from-brand-indigo to-brand-purple bg-clip-text text-transparent" />
                       <div>
                         <div className="font-semibold">Avg CPC</div>
-                        <div className="text-2xl font-bold"><span className="text-gray-400 italic flex items-center gap-2"><Loader className="animate-spin h-4 w-4 text-brand-purple" /> Pending API integration</span></div>
+                        <div className="text-2xl font-bold"><span className="text-gray-400 italic flex items-center gap-2"><Loader className="animate-spin h-4 w-4 bg-gradient-to-br from-brand-indigo to-brand-purple bg-clip-text text-transparent" /> Pending API integration</span></div>
                         <div className="text-xs text-gray-400">Average cost per click</div>
                       </div>
                       <div>
                         <div className="font-semibold">Cost</div>
-                        <div className="text-2xl font-bold"><span className="text-gray-400 italic flex items-center gap-2"><Loader className="animate-spin h-4 w-4 text-brand-purple" /> Pending API integration</span></div>
+                        <div className="text-2xl font-bold"><span className="text-gray-400 italic flex items-center gap-2"><Loader className="animate-spin h-4 w-4 bg-gradient-to-br from-brand-indigo to-brand-purple bg-clip-text text-transparent" /> Pending API integration</span></div>
                         <div className="text-xs text-gray-400">Total ad spend</div>
                       </div>
                     </div>
@@ -1055,31 +1063,31 @@ const Dashboard: React.FC = () => {
                 <CardContent>
                   <div className="flex flex-col gap-2">
                     <div className="flex items-center gap-4">
-                      <TrendingUp className="h-8 w-8 text-brand-purple" />
+                      <TrendingUp className="h-8 w-8 bg-gradient-to-br from-brand-indigo to-brand-purple bg-clip-text text-transparent" />
                       <div>
                         <div className="font-semibold">Quality Score</div>
-                        <div className="text-2xl font-bold"><span className="text-gray-400 italic flex items-center gap-2"><Loader className="animate-spin h-4 w-4 text-brand-purple" /> Pending API integration</span></div>
+                        <div className="text-2xl font-bold"><span className="text-gray-400 italic flex items-center gap-2"><Loader className="animate-spin h-4 w-4 bg-gradient-to-br from-brand-indigo to-brand-purple bg-clip-text text-transparent" /> Pending API integration</span></div>
                         <div className="text-xs text-gray-400">Ad relevance, expected CTR, landing page exp.</div>
                       </div>
                     </div>
                     <div className="flex items-center gap-4 mt-2">
-                      <LineChart className="h-8 w-8 text-brand-purple" />
+                      <LineChart className="h-8 w-8 bg-gradient-to-br from-brand-indigo to-brand-purple bg-clip-text text-transparent" />
                       <div>
                         <div className="font-semibold">Impression Share</div>
-                        <div className="text-2xl font-bold"><span className="text-gray-400 italic flex items-center gap-2"><Loader className="animate-spin h-4 w-4 text-brand-purple" /> Pending API integration</span></div>
+                        <div className="text-2xl font-bold"><span className="text-gray-400 italic flex items-center gap-2"><Loader className="animate-spin h-4 w-4 bg-gradient-to-br from-brand-indigo to-brand-purple bg-clip-text text-transparent" /> Pending API integration</span></div>
                         <div className="text-xs text-gray-400">Share of total possible impressions</div>
                       </div>
                     </div>
                     <div className="flex items-center gap-4 mt-2">
-                      <BarChart className="h-8 w-8 text-brand-purple" />
+                      <BarChart className="h-8 w-8 bg-gradient-to-br from-brand-indigo to-brand-purple bg-clip-text text-transparent" />
                       <div>
                         <div className="font-semibold">Lost-IS (Budget)</div>
-                        <div className="text-2xl font-bold"><span className="text-gray-400 italic flex items-center gap-2"><Loader className="animate-spin h-4 w-4 text-brand-purple" /> Pending API integration</span></div>
+                        <div className="text-2xl font-bold"><span className="text-gray-400 italic flex items-center gap-2"><Loader className="animate-spin h-4 w-4 bg-gradient-to-br from-brand-indigo to-brand-purple bg-clip-text text-transparent" /> Pending API integration</span></div>
                         <div className="text-xs text-gray-400">Lost due to budget</div>
                       </div>
                       <div>
                         <div className="font-semibold">Lost-IS (Rank)</div>
-                        <div className="text-2xl font-bold"><span className="text-gray-400 italic flex items-center gap-2"><Loader className="animate-spin h-4 w-4 text-brand-purple" /> Pending API integration</span></div>
+                        <div className="text-2xl font-bold"><span className="text-gray-400 italic flex items-center gap-2"><Loader className="animate-spin h-4 w-4 bg-gradient-to-br from-brand-indigo to-brand-purple bg-clip-text text-transparent" /> Pending API integration</span></div>
                         <div className="text-xs text-gray-400">Lost due to ad rank</div>
                       </div>
                     </div>
@@ -1095,26 +1103,26 @@ const Dashboard: React.FC = () => {
                 <CardContent>
                   <div className="flex flex-col gap-2">
                     <div className="flex items-center gap-4">
-                      <TrendingUp className="h-8 w-8 text-brand-purple" />
+                      <TrendingUp className="h-8 w-8 bg-gradient-to-br from-brand-indigo to-brand-purple bg-clip-text text-transparent" />
                       <div>
                         <div className="font-semibold">Conversions</div>
-                        <div className="text-2xl font-bold"><span className="text-gray-400 italic flex items-center gap-2"><Loader className="animate-spin h-4 w-4 text-brand-purple" /> Pending API integration</span></div>
+                        <div className="text-2xl font-bold"><span className="text-gray-400 italic flex items-center gap-2"><Loader className="animate-spin h-4 w-4 bg-gradient-to-br from-brand-indigo to-brand-purple bg-clip-text text-transparent" /> Pending API integration</span></div>
                         <div className="text-xs text-gray-400">Total conversions</div>
                       </div>
                     </div>
                     <div className="flex items-center gap-4 mt-2">
-                      <TrendingUp className="h-8 w-8 text-brand-purple" />
+                      <TrendingUp className="h-8 w-8 bg-gradient-to-br from-brand-indigo to-brand-purple bg-clip-text text-transparent" />
                       <div>
                         <div className="font-semibold">Conversion Rate</div>
-                        <div className="text-2xl font-bold"><span className="text-gray-400 italic flex items-center gap-2"><Loader className="animate-spin h-4 w-4 text-brand-purple" /> Pending API integration</span></div>
+                        <div className="text-2xl font-bold"><span className="text-gray-400 italic flex items-center gap-2"><Loader className="animate-spin h-4 w-4 bg-gradient-to-br from-brand-indigo to-brand-purple bg-clip-text text-transparent" /> Pending API integration</span></div>
                         <div className="text-xs text-gray-400">% of clicks that converted</div>
                       </div>
                     </div>
                     <div className="flex items-center gap-4 mt-2">
-                      <BarChart className="h-8 w-8 text-brand-purple" />
+                      <BarChart className="h-8 w-8 bg-gradient-to-br from-brand-indigo to-brand-purple bg-clip-text text-transparent" />
                       <div>
                         <div className="font-semibold">Cost/Conversion</div>
-                        <div className="text-2xl font-bold"><span className="text-gray-400 italic flex items-center gap-2"><Loader className="animate-spin h-4 w-4 text-brand-purple" /> Pending API integration</span></div>
+                        <div className="text-2xl font-bold"><span className="text-gray-400 italic flex items-center gap-2"><Loader className="animate-spin h-4 w-4 bg-gradient-to-br from-brand-indigo to-brand-purple bg-clip-text text-transparent" /> Pending API integration</span></div>
                         <div className="text-xs text-gray-400">Average cost per conversion</div>
                       </div>
                     </div>
@@ -1130,18 +1138,18 @@ const Dashboard: React.FC = () => {
                 <CardContent>
                   <div className="flex flex-col gap-2">
                     <div className="flex items-center gap-4">
-                      <TrendingUp className="h-8 w-8 text-brand-purple" />
+                      <TrendingUp className="h-8 w-8 bg-gradient-to-br from-brand-indigo to-brand-purple bg-clip-text text-transparent" />
                       <div>
                         <div className="font-semibold">ROAS</div>
-                        <div className="text-2xl font-bold"><span className="text-gray-400 italic flex items-center gap-2"><Loader className="animate-spin h-4 w-4 text-brand-purple" /> Pending API integration</span></div>
+                        <div className="text-2xl font-bold"><span className="text-gray-400 italic flex items-center gap-2"><Loader className="animate-spin h-4 w-4 bg-gradient-to-br from-brand-indigo to-brand-purple bg-clip-text text-transparent" /> Pending API integration</span></div>
                         <div className="text-xs text-gray-400">Return on ad spend</div>
                       </div>
                     </div>
                     <div className="flex items-center gap-4 mt-2">
-                      <BarChart className="h-8 w-8 text-brand-purple" />
+                      <BarChart className="h-8 w-8 bg-gradient-to-br from-brand-indigo to-brand-purple bg-clip-text text-transparent" />
                       <div>
                         <div className="font-semibold">Value/Conversion</div>
-                        <div className="text-2xl font-bold"><span className="text-gray-400 italic flex items-center gap-2"><Loader className="animate-spin h-4 w-4 text-brand-purple" /> Pending API integration</span></div>
+                        <div className="text-2xl font-bold"><span className="text-gray-400 italic flex items-center gap-2"><Loader className="animate-spin h-4 w-4 bg-gradient-to-br from-brand-indigo to-brand-purple bg-clip-text text-transparent" /> Pending API integration</span></div>
                         <div className="text-xs text-gray-400">Avg value per conversion</div>
                       </div>
                     </div>
@@ -1158,17 +1166,17 @@ const Dashboard: React.FC = () => {
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                     <div>
                       <div className="font-semibold mb-1">Overlap Rate</div>
-                      <div className="text-2xl font-bold"><span className="text-gray-400 italic flex items-center gap-2"><Loader className="animate-spin h-4 w-4 text-brand-purple" /> Pending API integration</span></div>
+                      <div className="text-2xl font-bold"><span className="text-gray-400 italic flex items-center gap-2"><Loader className="animate-spin h-4 w-4 bg-gradient-to-br from-brand-indigo to-brand-purple bg-clip-text text-transparent" /> Pending API integration</span></div>
                       <div className="text-xs text-gray-400 mt-1">How often another advertiser's ad received an impression in the same auction as yours</div>
                     </div>
                     <div>
                       <div className="font-semibold mb-1">Position Above Rate</div>
-                      <div className="text-2xl font-bold"><span className="text-gray-400 italic flex items-center gap-2"><Loader className="animate-spin h-4 w-4 text-brand-purple" /> Pending API integration</span></div>
+                      <div className="text-2xl font-bold"><span className="text-gray-400 italic flex items-center gap-2"><Loader className="animate-spin h-4 w-4 bg-gradient-to-br from-brand-indigo to-brand-purple bg-clip-text text-transparent" /> Pending API integration</span></div>
                       <div className="text-xs text-gray-400 mt-1">How often another advertiser's ad was shown above yours</div>
                     </div>
                     <div>
                       <div className="font-semibold mb-1">Top of Page Rate</div>
-                      <div className="text-2xl font-bold"><span className="text-gray-400 italic flex items-center gap-2"><Loader className="animate-spin h-4 w-4 text-brand-purple" /> Pending API integration</span></div>
+                      <div className="text-2xl font-bold"><span className="text-gray-400 italic flex items-center gap-2"><Loader className="animate-spin h-4 w-4 bg-gradient-to-br from-brand-indigo to-brand-purple bg-clip-text text-transparent" /> Pending API integration</span></div>
                       <div className="text-xs text-gray-400 mt-1">How often your ad was shown at the top of the page</div>
                     </div>
                   </div>
@@ -1187,39 +1195,39 @@ const Dashboard: React.FC = () => {
                 <CardContent>
                   <div className="flex flex-col gap-2">
                     <div className="flex items-center gap-4">
-                      <LineChart className="h-8 w-8 text-brand-purple" />
+                      <LineChart className="h-8 w-8 bg-gradient-to-br from-brand-indigo to-brand-purple bg-clip-text text-transparent" />
                       <div>
                         <div className="font-semibold">Impressions</div>
-                        <div className="text-2xl font-bold"><span className="text-gray-400 italic flex items-center gap-2"><Loader className="animate-spin h-4 w-4 text-brand-purple" /> Pending API integration</span></div>
+                        <div className="text-2xl font-bold"><span className="text-gray-400 italic flex items-center gap-2"><Loader className="animate-spin h-4 w-4 bg-gradient-to-br from-brand-indigo to-brand-purple bg-clip-text text-transparent" /> Pending API integration</span></div>
                         <div className="text-xs text-gray-400">Total ad impressions</div>
                       </div>
                     </div>
                     <div className="flex items-center gap-4 mt-2">
-                      <BarChart className="h-8 w-8 text-brand-purple" />
+                      <BarChart className="h-8 w-8 bg-gradient-to-br from-brand-indigo to-brand-purple bg-clip-text text-transparent" />
                       <div>
                         <div className="font-semibold">Clicks</div>
-                        <div className="text-2xl font-bold"><span className="text-gray-400 italic flex items-center gap-2"><Loader className="animate-spin h-4 w-4 text-brand-purple" /> Pending API integration</span></div>
+                        <div className="text-2xl font-bold"><span className="text-gray-400 italic flex items-center gap-2"><Loader className="animate-spin h-4 w-4 bg-gradient-to-br from-brand-indigo to-brand-purple bg-clip-text text-transparent" /> Pending API integration</span></div>
                         <div className="text-xs text-gray-400">Total ad clicks</div>
                       </div>
                     </div>
                     <div className="flex items-center gap-4 mt-2">
-                      <TrendingUp className="h-8 w-8 text-brand-purple" />
+                      <TrendingUp className="h-8 w-8 bg-gradient-to-br from-brand-indigo to-brand-purple bg-clip-text text-transparent" />
                       <div>
                         <div className="font-semibold">CTR</div>
-                        <div className="text-2xl font-bold"><span className="text-gray-400 italic flex items-center gap-2"><Loader className="animate-spin h-4 w-4 text-brand-purple" /> Pending API integration</span></div>
+                        <div className="text-2xl font-bold"><span className="text-gray-400 italic flex items-center gap-2"><Loader className="animate-spin h-4 w-4 bg-gradient-to-br from-brand-indigo to-brand-purple bg-clip-text text-transparent" /> Pending API integration</span></div>
                         <div className="text-xs text-gray-400">Click-through rate</div>
                       </div>
                     </div>
                     <div className="flex items-center gap-4 mt-2">
-                      <BarChart className="h-8 w-8 text-brand-purple" />
+                      <BarChart className="h-8 w-8 bg-gradient-to-br from-brand-indigo to-brand-purple bg-clip-text text-transparent" />
                       <div>
                         <div className="font-semibold">Cost</div>
-                        <div className="text-2xl font-bold"><span className="text-gray-400 italic flex items-center gap-2"><Loader className="animate-spin h-4 w-4 text-brand-purple" /> Pending API integration</span></div>
+                        <div className="text-2xl font-bold"><span className="text-gray-400 italic flex items-center gap-2"><Loader className="animate-spin h-4 w-4 bg-gradient-to-br from-brand-indigo to-brand-purple bg-clip-text text-transparent" /> Pending API integration</span></div>
                         <div className="text-xs text-gray-400">Total ad spend</div>
                       </div>
                       <div>
                         <div className="font-semibold">Avg CPC</div>
-                        <div className="text-2xl font-bold"><span className="text-gray-400 italic flex items-center gap-2"><Loader className="animate-spin h-4 w-4 text-brand-purple" /> Pending API integration</span></div>
+                        <div className="text-2xl font-bold"><span className="text-gray-400 italic flex items-center gap-2"><Loader className="animate-spin h-4 w-4 bg-gradient-to-br from-brand-indigo to-brand-purple bg-clip-text text-transparent" /> Pending API integration</span></div>
                         <div className="text-xs text-gray-400">Average cost per click</div>
                       </div>
                     </div>
@@ -1235,31 +1243,31 @@ const Dashboard: React.FC = () => {
                 <CardContent>
                   <div className="flex flex-col gap-2">
                     <div className="flex items-center gap-4">
-                      <TrendingUp className="h-8 w-8 text-brand-purple" />
+                      <TrendingUp className="h-8 w-8 bg-gradient-to-br from-brand-indigo to-brand-purple bg-clip-text text-transparent" />
                       <div>
                         <div className="font-semibold">Attributed Sales</div>
-                        <div className="text-2xl font-bold"><span className="text-gray-400 italic flex items-center gap-2"><Loader className="animate-spin h-4 w-4 text-brand-purple" /> Pending API integration</span></div>
+                        <div className="text-2xl font-bold"><span className="text-gray-400 italic flex items-center gap-2"><Loader className="animate-spin h-4 w-4 bg-gradient-to-br from-brand-indigo to-brand-purple bg-clip-text text-transparent" /> Pending API integration</span></div>
                         <div className="text-xs text-gray-400">Sales attributed to ads</div>
                       </div>
                     </div>
                     <div className="flex items-center gap-4 mt-2">
-                      <Users className="h-8 w-8 text-brand-purple" />
+                      <Users className="h-8 w-8 bg-gradient-to-br from-brand-indigo to-brand-purple bg-clip-text text-transparent" />
                       <div>
                         <div className="font-semibold">Orders</div>
-                        <div className="text-2xl font-bold"><span className="text-gray-400 italic flex items-center gap-2"><Loader className="animate-spin h-4 w-4 text-brand-purple" /> Pending API integration</span></div>
+                        <div className="text-2xl font-bold"><span className="text-gray-400 italic flex items-center gap-2"><Loader className="animate-spin h-4 w-4 bg-gradient-to-br from-brand-indigo to-brand-purple bg-clip-text text-transparent" /> Pending API integration</span></div>
                         <div className="text-xs text-gray-400">Total orders from ads</div>
                       </div>
                       <div>
                         <div className="font-semibold">Units Sold</div>
-                        <div className="text-2xl font-bold"><span className="text-gray-400 italic flex items-center gap-2"><Loader className="animate-spin h-4 w-4 text-brand-purple" /> Pending API integration</span></div>
+                        <div className="text-2xl font-bold"><span className="text-gray-400 italic flex items-center gap-2"><Loader className="animate-spin h-4 w-4 bg-gradient-to-br from-brand-indigo to-brand-purple bg-clip-text text-transparent" /> Pending API integration</span></div>
                         <div className="text-xs text-gray-400">Total units sold</div>
                       </div>
                     </div>
                     <div className="flex items-center gap-4 mt-2">
-                      <TrendingUp className="h-8 w-8 text-brand-purple" />
+                      <TrendingUp className="h-8 w-8 bg-gradient-to-br from-brand-indigo to-brand-purple bg-clip-text text-transparent" />
                       <div>
                         <div className="font-semibold">Conversion Rate</div>
-                        <div className="text-2xl font-bold"><span className="text-gray-400 italic flex items-center gap-2"><Loader className="animate-spin h-4 w-4 text-brand-purple" /> Pending API integration</span></div>
+                        <div className="text-2xl font-bold"><span className="text-gray-400 italic flex items-center gap-2"><Loader className="animate-spin h-4 w-4 bg-gradient-to-br from-brand-indigo to-brand-purple bg-clip-text text-transparent" /> Pending API integration</span></div>
                         <div className="text-xs text-gray-400">Orders ÷ Clicks</div>
                       </div>
                     </div>
@@ -1275,18 +1283,18 @@ const Dashboard: React.FC = () => {
                 <CardContent>
                   <div className="flex flex-col gap-2">
                     <div className="flex items-center gap-4">
-                      <TrendingUp className="h-8 w-8 text-brand-purple" />
+                      <TrendingUp className="h-8 w-8 bg-gradient-to-br from-brand-indigo to-brand-purple bg-clip-text text-transparent" />
                       <div>
                         <div className="font-semibold">ACoS</div>
-                        <div className="text-2xl font-bold"><span className="text-gray-400 italic flex items-center gap-2"><Loader className="animate-spin h-4 w-4 text-brand-purple" /> Pending API integration</span></div>
+                        <div className="text-2xl font-bold"><span className="text-gray-400 italic flex items-center gap-2"><Loader className="animate-spin h-4 w-4 bg-gradient-to-br from-brand-indigo to-brand-purple bg-clip-text text-transparent" /> Pending API integration</span></div>
                         <div className="text-xs text-gray-400">Ad spend ÷ sales</div>
                       </div>
                     </div>
                     <div className="flex items-center gap-4 mt-2">
-                      <TrendingUp className="h-8 w-8 text-brand-purple" />
+                      <TrendingUp className="h-8 w-8 bg-gradient-to-br from-brand-indigo to-brand-purple bg-clip-text text-transparent" />
                       <div>
                         <div className="font-semibold">TACoS</div>
-                        <div className="text-2xl font-bold"><span className="text-gray-400 italic flex items-center gap-2"><Loader className="animate-spin h-4 w-4 text-brand-purple" /> Pending API integration</span></div>
+                        <div className="text-2xl font-bold"><span className="text-gray-400 italic flex items-center gap-2"><Loader className="animate-spin h-4 w-4 bg-gradient-to-br from-brand-indigo to-brand-purple bg-clip-text text-transparent" /> Pending API integration</span></div>
                         <div className="text-xs text-gray-400">Total ACoS (including organic sales)</div>
                       </div>
                     </div>
@@ -1332,17 +1340,17 @@ const Dashboard: React.FC = () => {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                       <div className="font-semibold mb-1">Impression Share</div>
-                      <div className="text-2xl font-bold"><span className="text-gray-400 italic flex items-center gap-2"><Loader className="animate-spin h-4 w-4 text-brand-purple" /> Pending API integration</span></div>
+                      <div className="text-2xl font-bold"><span className="text-gray-400 italic flex items-center gap-2"><Loader className="animate-spin h-4 w-4 bg-gradient-to-br from-brand-indigo to-brand-purple bg-clip-text text-transparent" /> Pending API integration</span></div>
                       <div className="text-xs text-gray-400 mt-1">Share of total possible impressions</div>
                     </div>
                     <div>
                       <div className="font-semibold mb-1">Lost-IS (Budget)</div>
-                      <div className="text-2xl font-bold"><span className="text-gray-400 italic flex items-center gap-2"><Loader className="animate-spin h-4 w-4 text-brand-purple" /> Pending API integration</span></div>
+                      <div className="text-2xl font-bold"><span className="text-gray-400 italic flex items-center gap-2"><Loader className="animate-spin h-4 w-4 bg-gradient-to-br from-brand-indigo to-brand-purple bg-clip-text text-transparent" /> Pending API integration</span></div>
                       <div className="text-xs text-gray-400 mt-1">Lost due to budget</div>
                     </div>
                     <div>
                       <div className="font-semibold mb-1">Lost-IS (Rank)</div>
-                      <div className="text-2xl font-bold"><span className="text-gray-400 italic flex items-center gap-2"><Loader className="animate-spin h-4 w-4 text-brand-purple" /> Pending API integration</span></div>
+                      <div className="text-2xl font-bold"><span className="text-gray-400 italic flex items-center gap-2"><Loader className="animate-spin h-4 w-4 bg-gradient-to-br from-brand-indigo to-brand-purple bg-clip-text text-transparent" /> Pending API integration</span></div>
                       <div className="text-xs text-gray-400 mt-1">Lost due to ad rank</div>
                     </div>
                   </div>
@@ -1375,7 +1383,7 @@ const Dashboard: React.FC = () => {
                 <CardTitle>Post Library Preview</CardTitle>
                 <CardDescription className="text-gray-500">Preview your saved and generated posts</CardDescription>
               </div>
-              <Button asChild size="sm" className="bg-brand-purple text-white hover:bg-brand-purple/90">
+              <Button asChild size="sm" className="bg-gradient-to-br from-brand-indigo to-brand-purple text-white hover:from-brand-indigo/90 hover:to-brand-purple/90">
                 <a href="/library">Go to Library</a>
               </Button>
             </CardHeader>
