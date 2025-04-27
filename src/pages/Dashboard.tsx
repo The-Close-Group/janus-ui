@@ -1,11 +1,25 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useAuth } from '@/contexts/AuthContext';
 import { useWebsite } from '@/contexts/WebsiteContext';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
-import { LineChart, BarChart, Users, MessageSquare, ThumbsUp, TrendingUp, Instagram, Facebook } from 'lucide-react';
+import { LineChart, BarChart, Users, MessageSquare, ThumbsUp, TrendingUp, Instagram, Facebook, FileText } from 'lucide-react';
 import Layout from '@/components/Layout';
+
+// Interface for the scraper response
+interface ScraperResponse {
+  url: string;
+  title: string;
+  description?: string;
+  html: string;
+  markdown: string;
+  related_pages: Array<{
+    url: string;
+    title: string;
+    markdown: string;
+  }>;
+}
 
 // Mock data for the social analytics
 const generateMockData = () => {
@@ -46,6 +60,41 @@ const DashboardMetricCard = ({ title, value, change, icon: Icon }: {
 const Dashboard: React.FC = () => {
   const { user } = useAuth();
   const { website } = useWebsite();
+  const [scraperData, setScraperData] = useState<ScraperResponse | null>(null);
+  const [selectedRelatedPage, setSelectedRelatedPage] = useState<number | null>(null);
+  
+  useEffect(() => {
+    console.log('%c📄 Dashboard: Component mounted', 'color: #6366f1; font-weight: bold;');
+    console.log('%c🔍 Dashboard: User data loaded', 'color: #059669;', user);
+    console.log('%c🌐 Dashboard: Website data loaded', 'color: #059669;', website);
+    
+    // Load scraper data from localStorage if available
+    const storedScraperData = localStorage.getItem('scraperResult');
+    if (storedScraperData) {
+      try {
+        const parsedData = JSON.parse(storedScraperData) as ScraperResponse;
+        console.log('%c📋 Dashboard: Loaded scraper data from localStorage', 'color: #059669;', {
+          url: parsedData.url,
+          title: parsedData.title,
+          markdownLength: parsedData.markdown?.length || 0,
+          relatedPages: parsedData.related_pages?.length || 0
+        });
+        setScraperData(parsedData);
+      } catch (error) {
+        console.error('%c❌ Dashboard: Error parsing stored scraper data', 'color: #dc2626;', error);
+      }
+    } else {
+      console.log('%c❓ Dashboard: No scraper data found in localStorage', 'color: #d97706;');
+    }
+    
+    return () => {
+      console.log('%c📄 Dashboard: Component unmounted', 'color: #6366f1; font-weight: bold;');
+    };
+  }, [user, website]);
+
+  const handleTabChange = (value: string) => {
+    console.log('%c🔄 Dashboard: Tab changed', 'color: #8b5cf6;', { tab: value });
+  };
   
   return (
     <Layout showNav>
@@ -56,6 +105,94 @@ const Dashboard: React.FC = () => {
             Here's how your social media marketing is performing
           </p>
         </div>
+        
+        {/* Scraped Website Content Section */}
+        {scraperData && (
+          <Card className="mb-6">
+            <CardHeader>
+              <CardTitle className="flex items-center">
+                <FileText className="mr-2 h-5 w-5" /> 
+                Scraped Website Content: {scraperData.title}
+              </CardTitle>
+              <CardDescription>
+                {scraperData.description || 'Content from your website scraping request'}
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <Tabs defaultValue="markdown">
+                <TabsList className="mb-4">
+                  <TabsTrigger value="markdown">Markdown</TabsTrigger>
+                  <TabsTrigger value="related">Related Pages ({scraperData.related_pages.length})</TabsTrigger>
+                </TabsList>
+                
+                <TabsContent value="markdown">
+                  <div className="bg-gray-50 p-4 rounded-md overflow-auto max-h-[300px]">
+                    <pre className="text-xs font-mono whitespace-pre-wrap">{scraperData.markdown}</pre>
+                  </div>
+                </TabsContent>
+                
+                <TabsContent value="related">
+                  {scraperData.related_pages.length === 0 ? (
+                    <p className="text-gray-500">No related pages found.</p>
+                  ) : (
+                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+                      <div className="lg:col-span-1 border-r border-gray-200 pr-4">
+                        <ul className="space-y-2 max-h-[300px] overflow-auto">
+                          {scraperData.related_pages.map((page, index) => (
+                            <li key={index}>
+                              <button
+                                onClick={() => {
+                                  console.log('%c🔗 Dashboard: Related page selected', 'color: #8b5cf6;', {
+                                    index,
+                                    title: page.title,
+                                    url: page.url
+                                  });
+                                  setSelectedRelatedPage(index);
+                                }}
+                                className={`w-full text-left p-3 rounded-md ${
+                                  selectedRelatedPage === index
+                                    ? 'bg-purple-100 text-purple-800'
+                                    : 'hover:bg-gray-100 text-gray-700'
+                                }`}
+                              >
+                                <h3 className="font-medium truncate">{page.title || 'Untitled Page'}</h3>
+                                <p className="text-xs text-gray-500 truncate">{page.url}</p>
+                              </button>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                      <div className="lg:col-span-2">
+                        {selectedRelatedPage !== null ? (
+                          <div>
+                            <div className="flex justify-between items-center mb-4">
+                              <h3 className="font-medium">{scraperData.related_pages[selectedRelatedPage]?.title || 'Untitled Page'}</h3>
+                              <a
+                                href={scraperData.related_pages[selectedRelatedPage]?.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-xs text-purple-600 hover:underline"
+                              >
+                                Visit Page ↗
+                              </a>
+                            </div>
+                            <div className="bg-gray-50 p-4 rounded-md overflow-auto max-h-[300px] text-xs font-mono">
+                              <pre className="whitespace-pre-wrap">{scraperData.related_pages[selectedRelatedPage]?.markdown || ''}</pre>
+                            </div>
+                          </div>
+                        ) : (
+                          <div className="flex items-center justify-center h-full text-gray-500">
+                            Select a page from the left to view its content
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  )}
+                </TabsContent>
+              </Tabs>
+            </CardContent>
+          </Card>
+        )}
         
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4 mb-6">
           <DashboardMetricCard
@@ -84,11 +221,30 @@ const Dashboard: React.FC = () => {
           />
         </div>
         
-        <Tabs defaultValue="overview" className="mb-6">
+        <Tabs 
+          defaultValue="overview" 
+          className="mb-6"
+          onValueChange={handleTabChange}
+        >
           <TabsList className="mb-4">
-            <TabsTrigger value="overview">Overview</TabsTrigger>
-            <TabsTrigger value="instagram">Instagram</TabsTrigger>
-            <TabsTrigger value="facebook">Facebook</TabsTrigger>
+            <TabsTrigger 
+              value="overview"
+              onClick={() => console.log('%c🔄 Dashboard: Overview tab clicked', 'color: #8b5cf6;')}
+            >
+              Overview
+            </TabsTrigger>
+            <TabsTrigger 
+              value="instagram"
+              onClick={() => console.log('%c🔄 Dashboard: Instagram tab clicked', 'color: #8b5cf6;')}
+            >
+              Instagram
+            </TabsTrigger>
+            <TabsTrigger 
+              value="facebook"
+              onClick={() => console.log('%c🔄 Dashboard: Facebook tab clicked', 'color: #8b5cf6;')}
+            >
+              Facebook
+            </TabsTrigger>
           </TabsList>
           
           <TabsContent value="overview" className="space-y-4">
@@ -121,7 +277,11 @@ const Dashboard: React.FC = () => {
                 <CardContent>
                   <div className="space-y-4">
                     {[1, 2, 3].map((i) => (
-                      <div key={i} className="flex items-center gap-4 p-3 rounded-lg border bg-gray-50">
+                      <div 
+                        key={i} 
+                        className="flex items-center gap-4 p-3 rounded-lg border bg-gray-50"
+                        onClick={() => console.log('%c📊 Dashboard: Top post clicked', 'color: #8b5cf6;', { postId: i })}
+                      >
                         <div className="w-16 h-16 bg-gray-200 rounded-lg flex items-center justify-center">
                           <Instagram className="h-6 w-6 text-gray-400" />
                         </div>
@@ -149,7 +309,10 @@ const Dashboard: React.FC = () => {
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-4">
-                    <div className="p-4 rounded-lg border">
+                    <div 
+                      className="p-4 rounded-lg border"
+                      onClick={() => console.log('%c📊 Dashboard: Instagram platform clicked', 'color: #8b5cf6;')}
+                    >
                       <div className="flex items-center gap-3 mb-2">
                         <Instagram className="h-5 w-5" />
                         <span className="font-medium">Instagram</span>
@@ -159,7 +322,10 @@ const Dashboard: React.FC = () => {
                         <span className="text-green-500">+5.2% growth</span>
                       </div>
                     </div>
-                    <div className="p-4 rounded-lg border">
+                    <div 
+                      className="p-4 rounded-lg border"
+                      onClick={() => console.log('%c📊 Dashboard: Facebook platform clicked', 'color: #8b5cf6;')}
+                    >
                       <div className="flex items-center gap-3 mb-2">
                         <Facebook className="h-5 w-5" />
                         <span className="font-medium">Facebook</span>

@@ -35,6 +35,7 @@ origins = [
     "http://localhost:8080",
     "http://localhost:3000",
     "http://localhost:3002",  # Add Vite dev server port
+    "http://localhost:3003",  # Add the new frontend port
     # Add any other origins you need
 ]
 
