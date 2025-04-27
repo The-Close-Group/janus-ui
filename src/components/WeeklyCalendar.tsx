@@ -52,10 +52,10 @@ export const TimelineView: React.FC = () => {
           Zoom (coming soon)
         </button>
       </div>
-      {/* Add extra top margin to timeline area to avoid overlap */}
-      <div className="relative w-full h-24 flex items-center mt-8" style={{ maxWidth: '100%' }}>
-        {/* Timeline line */}
-        <div className="absolute left-0 right-0 top-1/2 h-1 bg-gray-200 rounded-full" style={{ transform: 'translateY(-50%)' }} />
+      {/* Add extra top margin and expand timeline width */}
+      <div className="relative w-full max-w-[1800px] h-24 flex items-center mt-16" style={{ minWidth: '1200px' }}>
+        {/* Timeline line - shrink to fit inside card with margin */}
+        <div className="absolute left-[60px] right-[60px] top-1/2 h-1 bg-gray-200 rounded-full" style={{ transform: 'translateY(-50%)' }} />
         {/* Start label and date */}
         <div className="absolute left-0 -top-10 text-xs text-gray-700 font-semibold text-left">
           <div>Start of Campaign</div>
@@ -66,12 +66,12 @@ export const TimelineView: React.FC = () => {
           <div>End of Campaign</div>
           <div className="text-gray-500 font-normal">{endDate}</div>
         </div>
-        {/* Dots for events */}
-        {allEvents.map((event, idx) => (
+        {/* Dots for events - removed for now */}
+        {/* {allEvents.map((event, idx) => (
           <div
             key={idx}
             className="absolute top-1/2 -translate-y-1/2"
-            style={{ left: `calc(${getPosition(event.day, event.hour)}%)` }}
+            style={{ left: `calc(60px + (${getPosition(event.day, event.hour)}% * (100% - 120px) / 100))` }}
           >
             <div className="w-5 h-5 bg-brand-purple rounded-full border-2 border-white shadow-md flex items-center justify-center">
               <span className="sr-only">{event.title}</span>
@@ -80,12 +80,12 @@ export const TimelineView: React.FC = () => {
               {days[event.day]}, {formatHour(event.hour)}
             </div>
           </div>
-        ))}
+        ))} */}
         {/* Start and end dots */}
-        <div className="absolute left-0 top-1/2 -translate-y-1/2">
+        <div className="absolute left-[60px] top-1/2 -translate-y-1/2">
           <div className="w-6 h-6 bg-green-400 rounded-full border-2 border-white shadow-md" />
         </div>
-        <div className="absolute right-0 top-1/2 -translate-y-1/2">
+        <div className="absolute right-[60px] top-1/2 -translate-y-1/2">
           <div className="w-6 h-6 bg-red-400 rounded-full border-2 border-white shadow-md" />
         </div>
       </div>
