@@ -5,12 +5,31 @@ import { toast } from 'react-hot-toast';
 const MAX_RETRIES = 3;
 const TIMEOUT_MS = 30000; // 30 seconds
 
+interface RelatedPage {
+  url: string;
+  title: string;
+  markdown: string;
+}
+
+interface ScrapingResult {
+  url: string;
+  title: string;
+  description?: string;
+  html: string;
+  markdown: string;
+  related_pages: RelatedPage[];
+}
+
 export function WebScraperPage() {
   const [html, setHtml] = useState<string | null>(null);
+  const [markdown, setMarkdown] = useState<string | null>(null);
+  const [relatedPages, setRelatedPages] = useState<RelatedPage[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [metadata, setMetadata] = useState<{ title?: string; description?: string } | null>(null);
   const [backendStatus, setBackendStatus] = useState<'checking' | 'online' | 'offline'>('checking');
+  const [activeTab, setActiveTab] = useState<'markdown' | 'html' | 'related'>('markdown');
+  const [selectedRelatedPage, setSelectedRelatedPage] = useState<number | null>(null);
 
   // Check if backend is accessible on component mount
   useEffect(() => {
@@ -60,6 +79,12 @@ export function WebScraperPage() {
     console.log('%c🚀 Starting request to scrape URL: ' + url, 'font-size: 14px; color: #6366f1; font-weight: bold;');
     setIsLoading(true);
     setError(null);
+    setHtml(null);
+    setMarkdown(null);
+    setRelatedPages([]);
+    setMetadata(null);
+    setSelectedRelatedPage(null);
+    setActiveTab('markdown');
     
     try {
       console.log('%c📤 Sending request to backend...', 'color: #2563eb');
@@ -83,78 +108,68 @@ export function WebScraperPage() {
       });
 
       if (!response.ok) {
-        // Retry on 5xx server errors
-        if (response.status >= 500 && retryCount < MAX_RETRIES) {
-          console.log(`Retrying request (attempt ${retryCount + 1} of ${MAX_RETRIES})...`);
-          setIsLoading(false);
+        const errorText = await response.text();
+        console.error('%c❌ Error from backend:', 'color: #dc2626', errorText);
+        
+        if (retryCount < MAX_RETRIES) {
+          console.log(`%c🔄 Retry attempt ${retryCount + 1}/${MAX_RETRIES}...`, 'color: #d97706');
+          toast.error(`Request failed. Retrying... (${retryCount + 1}/${MAX_RETRIES})`);
           return handleSubmit(url, retryCount + 1);
         }
         
-        let errorMessage = `Failed to fetch website data: ${response.status} ${response.statusText}`;
-        try {
-          const errorData = await response.json();
-          if (errorData.detail) {
-            errorMessage = errorData.detail;
-          }
-        } catch {
-          // If we can't parse the error JSON, use the default message
-        }
-        throw new Error(errorMessage);
+        setError(`Failed to scrape the website. Server responded with: ${response.status} ${response.statusText}`);
+        toast.error('Failed to scrape website after multiple attempts.');
+        setIsLoading(false);
+        return;
       }
 
-      // Get response as text as per requirements
-      const htmlText = await response.text();
-      
-      // Log the HTML to console as per requirements
-      console.log('%c🌐 Scraped HTML Content:', 'background:#f0f0f0; color:#333; font-size:14px; padding:5px;');
-      console.log(htmlText);
-      
-      setHtml(htmlText);
-      setError(null);
-      
-      // Show success toast
-      toast.success('Website scraped successfully!', {
-        duration: 5000,
-        position: 'top-right'
-      });
-      
-      console.log('%c✅ Successfully updated state with scraped data', 'color: #059669; font-weight: bold;');
-    } catch (err) {
-      console.group('%c❌ Error Details', 'color: #dc2626; font-weight: bold;');
-      console.error('Error object:', err);
-      console.error('Error message:', err instanceof Error ? err.message : 'Unknown error');
-      console.error('Stack trace:', err instanceof Error ? err.stack : 'No stack trace');
-      console.groupEnd();
-      
-      let errorMessage = 'An error occurred';
-      
-      if (err instanceof Error) {
-        if (err.name === 'AbortError') {
-          errorMessage = 'Request timed out. Please try again.';
-        } else if (err.message.includes('Failed to fetch')) {
-          errorMessage = 'Could not connect to the server. Please check if the backend is running.';
-        } else {
-          errorMessage = err.message;
-        }
+      // Try to parse as JSON first
+      let data: ScrapingResult;
+      try {
+        data = await response.json();
+        console.log('%c📊 Parsed JSON response:', 'color: #059669');
+        
+        // Set HTML and metadata
+        setHtml(data.html);
+        setMarkdown(data.markdown);
+        setRelatedPages(data.related_pages || []);
+        setMetadata({
+          title: data.title,
+          description: data.description
+        });
+        
+        toast.success('Website scraped successfully!');
+      } catch (jsonError) {
+        // If not JSON, treat as plain HTML
+        console.log('%c📄 Treating response as plain HTML (non-JSON)...', 'color: #2563eb');
+        const htmlText = await response.text();
+        setHtml(htmlText);
+        toast.success('Website scraped (raw HTML only).');
       }
       
-      setError(errorMessage);
-      setHtml(null);
-      setMetadata(null);
+      setIsLoading(false);
+    } catch (err: any) {
+      console.error('%c❌ Error during fetch:', 'color: #dc2626', err);
       
-      // Show error toast
-      toast.error(errorMessage, {
-        duration: 5000,
-        position: 'top-right'
-      });
-    } finally {
+      if (err.name === 'AbortError') {
+        setError('Request timed out. The website might be too large or slow to respond.');
+        toast.error('Request timed out.');
+      } else if (retryCount < MAX_RETRIES) {
+        console.log(`%c🔄 Retry attempt ${retryCount + 1}/${MAX_RETRIES}...`, 'color: #d97706');
+        toast.error(`Connection error. Retrying... (${retryCount + 1}/${MAX_RETRIES})`);
+        return handleSubmit(url, retryCount + 1);
+      } else {
+        setError(`Network error: ${err.message}`);
+        toast.error('Failed to connect after multiple attempts.');
+      }
+      
       setIsLoading(false);
     }
   };
 
   return (
     <div className="min-h-screen bg-gray-50 py-12">
-      <div className="max-w-4xl mx-auto px-4">
+      <div className="max-w-5xl mx-auto px-4">
         {backendStatus === 'checking' && (
           <div className="mb-6 bg-blue-50 p-4 rounded-md">
             <p className="text-blue-700 flex items-center">
@@ -190,11 +205,121 @@ export function WebScraperPage() {
           </div>
         )}
 
-        {html && !isLoading && (
-          <div className="mt-8 bg-white rounded-lg shadow-md p-6">
-            <h2 className="text-xl font-semibold text-gray-900 mb-4">Scraped HTML:</h2>
-            <div id="preview" className="bg-gray-50 p-4 rounded-md overflow-auto max-h-[500px] text-sm font-mono">
-              <pre>{html}</pre>
+        {(html || markdown || relatedPages.length > 0) && !isLoading && (
+          <div className="mt-8 bg-white rounded-lg shadow-md">
+            <div className="border-b border-gray-200">
+              <nav className="flex -mb-px">
+                <button
+                  onClick={() => setActiveTab('markdown')}
+                  className={`py-4 px-6 font-medium text-sm border-b-2 ${
+                    activeTab === 'markdown'
+                      ? 'border-purple-500 text-purple-600'
+                      : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                  }`}
+                >
+                  Markdown
+                </button>
+                <button
+                  onClick={() => setActiveTab('html')}
+                  className={`py-4 px-6 font-medium text-sm border-b-2 ${
+                    activeTab === 'html'
+                      ? 'border-purple-500 text-purple-600'
+                      : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                  }`}
+                >
+                  HTML
+                </button>
+                <button
+                  onClick={() => setActiveTab('related')}
+                  className={`py-4 px-6 font-medium text-sm border-b-2 flex items-center ${
+                    activeTab === 'related'
+                      ? 'border-purple-500 text-purple-600'
+                      : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                  }`}
+                >
+                  Related Pages
+                  {relatedPages.length > 0 && (
+                    <span className="ml-2 bg-gray-100 text-gray-700 px-2 py-0.5 rounded-full text-xs">
+                      {relatedPages.length}
+                    </span>
+                  )}
+                </button>
+              </nav>
+            </div>
+
+            <div className="p-6">
+              {activeTab === 'markdown' && markdown && (
+                <div>
+                  <h2 className="text-xl font-semibold text-gray-900 mb-4">Markdown Content:</h2>
+                  <div className="bg-gray-50 p-4 rounded-md overflow-auto max-h-[600px] text-sm font-mono">
+                    <pre>{markdown}</pre>
+                  </div>
+                </div>
+              )}
+
+              {activeTab === 'html' && html && (
+                <div>
+                  <h2 className="text-xl font-semibold text-gray-900 mb-4">HTML Content:</h2>
+                  <div className="bg-gray-50 p-4 rounded-md overflow-auto max-h-[600px] text-sm font-mono">
+                    <pre>{html}</pre>
+                  </div>
+                </div>
+              )}
+
+              {activeTab === 'related' && (
+                <div>
+                  <h2 className="text-xl font-semibold text-gray-900 mb-4">Related Pages ({relatedPages.length}):</h2>
+                  {relatedPages.length === 0 ? (
+                    <p className="text-gray-500">No related pages found.</p>
+                  ) : (
+                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+                      <div className="lg:col-span-1 border-r border-gray-200 pr-4">
+                        <ul className="space-y-2">
+                          {relatedPages.map((page, index) => (
+                            <li key={index}>
+                              <button
+                                onClick={() => setSelectedRelatedPage(index)}
+                                className={`w-full text-left p-3 rounded-md ${
+                                  selectedRelatedPage === index
+                                    ? 'bg-purple-100 text-purple-800'
+                                    : 'hover:bg-gray-100 text-gray-700'
+                                }`}
+                              >
+                                <h3 className="font-medium truncate">{page.title || 'Untitled Page'}</h3>
+                                <p className="text-xs text-gray-500 truncate">{page.url}</p>
+                              </button>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                      <div className="lg:col-span-2">
+                        {selectedRelatedPage !== null ? (
+                          <div>
+                            <div className="flex justify-between items-center mb-4">
+                              <h3 className="font-medium">{relatedPages[selectedRelatedPage]?.title || 'Untitled Page'}</h3>
+                              <a
+                                href={relatedPages[selectedRelatedPage]?.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-xs text-purple-600 hover:underline"
+                              >
+                                Visit Page ↗
+                              </a>
+                            </div>
+                            <div className="bg-gray-50 p-4 rounded-md overflow-auto max-h-[500px] text-sm font-mono">
+                              <pre>{relatedPages[selectedRelatedPage]?.markdown || ''}</pre>
+                            </div>
+                          </div>
+                        ) : (
+                          <div className="flex items-center justify-center h-full text-gray-500">
+                            Select a page from the left to view its content
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              )}
             </div>
           </div>
         )}
