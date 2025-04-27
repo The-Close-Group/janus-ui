@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -12,6 +11,8 @@ import SignupPage from "@/pages/SignupPage";
 import WebsiteForm from "@/pages/WebsiteForm";
 import Dashboard from "@/pages/Dashboard";
 import NotFound from "@/pages/NotFound";
+import { WebScraperPage } from './pages/WebScraperPage';
+import { Toaster as HotToaster } from 'react-hot-toast';
 
 const queryClient = new QueryClient();
 
@@ -52,15 +53,25 @@ const AppRoutes = () => {
       
       <Route path="/website" element={
         <ProtectedRoute>
-          <WebsiteForm />
+          <WebsiteProvider>
+            <WebsiteForm />
+          </WebsiteProvider>
         </ProtectedRoute>
       } />
       
       <Route path="/dashboard" element={
         <ProtectedRoute>
-          <WebsiteRequiredRoute>
-            <Dashboard />
-          </WebsiteRequiredRoute>
+          <WebsiteProvider>
+            <WebsiteRequiredRoute>
+              <Dashboard />
+            </WebsiteRequiredRoute>
+          </WebsiteProvider>
+        </ProtectedRoute>
+      } />
+      
+      <Route path="/scraper" element={
+        <ProtectedRoute>
+          <WebScraperPage />
         </ProtectedRoute>
       } />
       
@@ -73,12 +84,11 @@ const App = () => (
   <QueryClientProvider client={queryClient}>
     <BrowserRouter>
       <TooltipProvider>
-        <Toaster />
-        <Sonner />
         <AuthProvider>
-          <WebsiteProvider>
-            <AppRoutes />
-          </WebsiteProvider>
+          <Toaster />
+          <Sonner />
+          <HotToaster />
+          <AppRoutes />
         </AuthProvider>
       </TooltipProvider>
     </BrowserRouter>
