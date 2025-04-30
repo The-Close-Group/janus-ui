@@ -13,6 +13,7 @@ import Dashboard from "@/pages/Dashboard";
 import NotFound from "@/pages/NotFound";
 import Library from "@/pages/Library";
 import CampaignControls from './pages/CampaignControls';
+import PerformanceInsights from './pages/PerformanceInsights';
 
 const queryClient = new QueryClient();
 
@@ -69,6 +70,14 @@ const AppRoutes = () => {
         <ProtectedRoute>
           <WebsiteRequiredRoute>
             <Library />
+          </WebsiteRequiredRoute>
+        </ProtectedRoute>
+      } />
+      
+      <Route path="/performance-insights" element={
+        <ProtectedRoute>
+          <WebsiteRequiredRoute>
+            <PerformanceInsights />
           </WebsiteRequiredRoute>
         </ProtectedRoute>
       } />

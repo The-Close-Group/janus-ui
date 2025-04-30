@@ -7,9 +7,11 @@ const CampaignControls: React.FC = () => {
   const navigate = useNavigate();
   return (
     <div className="min-h-screen bg-white p-8 flex flex-col items-center">
-      <Button className="mb-8 bg-gradient-to-br from-brand-indigo to-brand-purple text-white" onClick={() => navigate('/dashboard')}>
-        ← Back to Dashboard
-      </Button>
+      <div className="w-full flex justify-start mb-4">
+        <Button className="bg-gradient-to-br from-brand-indigo to-brand-purple text-white" onClick={() => navigate('/dashboard')}>
+          ← Back to Dashboard
+        </Button>
+      </div>
       <Card className="max-w-2xl w-full mb-8">
         <CardHeader>
           <CardTitle>Campaign Controls</CardTitle>

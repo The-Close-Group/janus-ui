@@ -116,11 +116,18 @@ const Dashboard: React.FC = () => {
         </div>
         {/* Chatbot as a core dashboard feature */}
         <div className="mb-8">
-          <div className="w-full h-[420px] rounded-3xl border-2 border-gray-200 shadow-lg bg-white flex flex-col md:flex-row">
+          <div className="w-full flex flex-col md:flex-row gap-6">
             {/* Left: Simulator & Management */}
-            <div className="flex-1 flex flex-col justify-between p-6 bg-white rounded-t-3xl md:rounded-l-3xl md:rounded-tr-none border-b-2 md:border-b-0 md:border-r-2 border-gray-200 h-full">
-              <button className="w-full bg-gradient-to-br from-brand-indigo to-brand-purple text-white py-3 px-4 rounded-2xl font-bold text-lg shadow-md hover:from-brand-indigo/90 hover:to-brand-purple/90 transition mb-6">Simulate Campaign</button>
-              <div className="bg-brand-purple/10 rounded-2xl shadow p-4 mb-4 border border-brand-purple/20 flex items-center justify-between">
+            <div className="flex flex-col gap-6 w-full md:w-1/2">
+              <Card className="rounded-3xl border-2 border-gray-200 shadow-lg bg-white flex flex-col items-center justify-center p-8">
+                <div className="w-full text-center mb-6">
+                  <span className="text-2xl font-bold text-brand-purple">Simulate Campaign</span>
+                </div>
+                <Button className="bg-gradient-to-br from-brand-indigo to-brand-purple text-white rounded-xl px-8 py-4 font-semibold text-lg shadow hover:from-brand-indigo/90 hover:to-brand-purple/90 transition">
+                  Run Simulation
+                </Button>
+              </Card>
+              <Card className="bg-brand-purple/10 rounded-3xl shadow p-4 border-2 border-brand-purple/40 flex items-center justify-between">
                 <div>
                   <div className="font-semibold text-brand-purple mb-2 text-base">Campaign Controls</div>
                   <div className="text-gray-700 text-sm">(Budget, Duration, Targeting, etc. controls will appear here)</div>
@@ -131,17 +138,23 @@ const Dashboard: React.FC = () => {
                 >
                   Expand
                 </button>
-              </div>
-              <div className="bg-brand-purple/10 rounded-2xl shadow p-4 border border-brand-purple/20 flex-1 flex flex-col justify-between">
+              </Card>
+              <Card className="bg-brand-purple/10 rounded-3xl shadow p-4 border-2 border-brand-purple/40 flex items-center justify-between">
                 <div>
                   <div className="font-semibold text-brand-purple mb-2 text-base">Performance Insights</div>
                   <div className="text-gray-700 text-sm">(Campaign performance summary, projections, and insights will appear here)</div>
                 </div>
-              </div>
+                <button
+                  className="ml-4 px-4 py-2 bg-gradient-to-br from-brand-indigo to-brand-purple text-white rounded-xl font-semibold shadow hover:from-brand-indigo/90 hover:to-brand-purple/90 transition"
+                  onClick={() => navigate('/performance-insights')}
+                >
+                  Expand
+                </button>
+              </Card>
             </div>
             {/* Right: Chat Section */}
-            <div className="flex-1 flex flex-col min-w-0 bg-white rounded-b-3xl md:rounded-b-none md:rounded-r-3xl h-full">
-              <div className="bg-gradient-to-br from-brand-indigo to-brand-purple text-white px-6 py-3 font-semibold rounded-t-3xl md:rounded-tr-3xl md:rounded-tl-none text-lg border-b-2 border-brand-purple/20">Campaign Manager</div>
+            <Card className="flex-1 flex flex-col min-w-0 rounded-3xl shadow-lg border-2 border-gray-200">
+              <div className="bg-gradient-to-br from-brand-indigo to-brand-purple text-white px-6 py-3 font-semibold rounded-t-3xl text-lg">Campaign Manager</div>
               <div ref={chatScrollRef} className="flex-1 p-6 space-y-3 overflow-y-auto bg-white">
                 {chatHistory.map((msg, i) => (
                   <div key={i} className={`flex ${msg.sender === 'user' ? 'justify-end' : 'justify-start'}`}> 
@@ -164,7 +177,7 @@ const Dashboard: React.FC = () => {
                   Send
                 </button>
               </div>
-            </div>
+            </Card>
           </div>
         </div>
         <Tabs defaultValue="overview" className="mb-8">
@@ -179,6 +192,96 @@ const Dashboard: React.FC = () => {
             <TabsTrigger value="other" className="flex-1 min-w-max text-brand-purple data-[state=active]:bg-gradient-to-br data-[state=active]:from-brand-indigo data-[state=active]:to-brand-purple data-[state=active]:text-white rounded-xl px-6 py-2 transition">Other</TabsTrigger>
           </TabsList>
           <TabsContent value="overview" className="space-y-6">
+            {/* Insights Summary Widget */}
+            <Card className="bg-white rounded-2xl border-2 border-brand-purple/20 shadow-md p-6">
+              <CardHeader>
+                <CardTitle>Platform Metrics Summary</CardTitle>
+                <CardDescription className="text-gray-500">A summary of the most important metrics from all platforms</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {/* Instagram */}
+                  <div className="bg-brand-purple/10 rounded-xl p-4 border-2 border-brand-purple/30 flex flex-col gap-2 shadow-sm">
+                    <div className="flex items-center gap-2 mb-1">
+                      <span className="w-3 h-3 rounded-full bg-gradient-to-br from-pink-500 to-yellow-400"></span>
+                      <span className="font-bold text-brand-purple">Instagram</span>
+                    </div>
+                    <div className="text-sm text-gray-700">Engagement up <span className='font-semibold'>5.2%</span>. Carousel posts and Reels drive most interactions. Peak: 6-9pm.</div>
+                  </div>
+                  {/* Facebook */}
+                  <div className="bg-blue-100 rounded-xl p-4 border-2 border-blue-300 flex flex-col gap-2 shadow-sm">
+                    <div className="flex items-center gap-2 mb-1">
+                      <span className="w-3 h-3 rounded-full bg-blue-500"></span>
+                      <span className="font-bold text-blue-700">Facebook</span>
+                    </div>
+                    <div className="text-sm text-gray-700">Contests and image posts perform best. Try boosting top posts for more reach.</div>
+                  </div>
+                  {/* LinkedIn */}
+                  <div className="bg-blue-50 rounded-xl p-4 border-2 border-blue-200 flex flex-col gap-2 shadow-sm">
+                    <div className="flex items-center gap-2 mb-1">
+                      <span className="w-3 h-3 rounded-full bg-blue-600"></span>
+                      <span className="font-bold text-blue-800">LinkedIn</span>
+                    </div>
+                    <div className="text-sm text-gray-700">Thought leadership posts have highest engagement. Peak: 9am-12pm.</div>
+                  </div>
+                  {/* YouTube */}
+                  <div className="bg-red-50 rounded-xl p-4 border-2 border-red-200 flex flex-col gap-2 shadow-sm">
+                    <div className="flex items-center gap-2 mb-1">
+                      <span className="w-3 h-3 rounded-full bg-red-500"></span>
+                      <span className="font-bold text-red-700">YouTube</span>
+                    </div>
+                    <div className="text-sm text-gray-700">Product demos and tutorials have highest retention. Avg view duration: <span className='font-semibold'>3:45</span>.</div>
+                  </div>
+                  {/* Google Ads */}
+                  <div className="bg-green-50 rounded-xl p-4 border-2 border-green-200 flex flex-col gap-2 shadow-sm">
+                    <div className="flex items-center gap-2 mb-1">
+                      <span className="w-3 h-3 rounded-full bg-green-500"></span>
+                      <span className="font-bold text-green-700">Google Ads</span>
+                    </div>
+                    <div className="text-sm text-gray-700">CTR <span className='font-semibold'>5.1%</span>. High-CTR campaigns should get more budget. Avg CPC: <span className='font-semibold'>$1.23</span>.</div>
+                  </div>
+                  {/* Amazon Ads */}
+                  <div className="bg-yellow-50 rounded-xl p-4 border-2 border-yellow-200 flex flex-col gap-2 shadow-sm">
+                    <div className="flex items-center gap-2 mb-1">
+                      <span className="w-3 h-3 rounded-full bg-yellow-500"></span>
+                      <span className="font-bold text-yellow-700">Amazon Ads</span>
+                    </div>
+                    <div className="text-sm text-gray-700">Steady sales. Optimize listings and test new keywords. ACoS: <span className='font-semibold'>18%</span>.</div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+            {/* Value Growth Graph Widget */}
+            <Card className="bg-gray-50 rounded-2xl text-gray-900 border-2 border-gray-200 shadow-md">
+              <CardHeader>
+                <CardTitle>Value Growth</CardTitle>
+                <CardDescription className="text-gray-500">
+                  Combined value growth across all platforms (mock data)
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="h-80 flex items-center justify-center text-gray-400 border-2 border-dashed border-gray-200 rounded-2xl">
+                  <div className="text-center">
+                    <svg width="320" height="120" viewBox="0 0 320 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <polyline
+                        fill="none"
+                        stroke="#7C3AED"
+                        strokeWidth="4"
+                        strokeLinejoin="round"
+                        strokeLinecap="round"
+                        points="0,100 40,90 80,80 120,60 160,50 200,40 240,30 280,20 320,10"
+                      />
+                      <circle cx="320" cy="10" r="6" fill="#7C3AED" />
+                    </svg>
+                    <p className="mt-4 text-lg text-brand-purple font-semibold">Steady Value Growth</p>
+                    <p className="text-sm text-gray-400">
+                      (Mock graph: upward trend in combined value across platforms)
+                    </p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+            {/* Existing Marketing Growth Widget */}
             <Card className="bg-gray-50 rounded-2xl text-gray-900 border-2 border-gray-200 shadow-md">
               <CardHeader>
                 <CardTitle>Marketing Growth</CardTitle>
